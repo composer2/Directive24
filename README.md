@@ -15,6 +15,6 @@
 
 ##<a href="https://github.com/TelerikAcademy/Angular-2/blob/master/Course%20Project/README.md">Project Requirements</a>  
 
-##GitHub:<a href="https://github.com/composer2/Directive24">White riders</a>
+##GitHub:<a href="https://github.com/composer2/Directive24">White Riders</a>
 
 ##Presentation: <a href="not done">Directive24 Presentation</a>
