@@ -11,7 +11,7 @@
 |                   | :white_check_mark:|
 |Hristina Bailova |__hristina.bailova__	        |
 |Boncho Belutov |__composer2__ |		
-|Atanas Papucharov|__Absend__       	|	
+|Plamen Todorov |__plamenvt__       	|	
 
 ##<a href="https://github.com/TelerikAcademy/Angular-2/blob/master/Course%20Project/README.md">Project Requirements</a>  
 
