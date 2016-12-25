@@ -1,0 +1,45 @@
+<div class="container">
+  <!--heading-->
+  <div class="well well-sm">
+    <h2>TOP OFFERS
+    </h2>
+  </div>
+  <!--sort buttons-->
+  <div class="btn-group btn-group-justified">
+    <a href="#" class="btn btn-default">Best Sellers</a>
+    <a href="#" class="btn btn-default">Newest</a>
+    <a href="#" class="btn btn-default">Price <span class="glyphicon glyphicon-arrow-up"></span><span class="glyphicon glyphicon-arrow-down"></span></a>
+  </div>
+  <br>
+  <!--events-->
+  <div class="offers" *ngFor="let offer of allOffers">
+    <div class="media">
+      <div class="media-left">
+        <img src="{{offer.picture}}" class="media-object" width="133px" height="133px" alt="{{offer.name}}">
+      </div>
+      <div class="media-body">
+        <h4 class="media-heading"><a href="" [routerLink]="[offer.id]">{{offer.name}}</a></h4>
+        <p>{{offer.description}}</p>
+      </div>
+      <div class="media-body">
+        <div class="pull-right">
+          <h4 class="price">{{offer.price  | currency:'USD':true:'1.2-2'}}</h4>
+          <h5 *ngIf="offer.inStock" class="green-text">In stock</h5>
+          <p *ngIf="offer.freeDelivery"><strong>FREE delivery</strong></p>
+          <p>sold by <a href="www.amazon.com" class="sold-by">{{offer.soldBy}}</a></p>
+          <a href="" class="btn btn-info btn-default" role="button"><span class="glyphicon glyphicon-shopping-cart"> Add</span></a>
+          <a href="" class="btn btn-info btn-danger" role="button">Buy now</a>
+        </div>
+      </div>
+    </div>
+    <hr>
+  </div>
+  <!--pagination-->
+  <ul class="pagination">
+    <li class="active"><a href="">1</a></li>
+    <li><a href="">2</a></li>
+    <li><a href="">3</a></li>
+    <li><a href="">4</a></li>
+    <li><a href="">5</a></li>
+  </ul>
+</div>

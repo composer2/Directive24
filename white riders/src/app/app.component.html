@@ -1,0 +1,74 @@
+<div>
+  <div class="jumbotron">
+    <div class="container text-left">
+      <h1>White Riders</h1>
+    </div>
+  </div>
+
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+        <a class="navbar-brand" href="">
+          <img class="logo" src="../assets/images/white-riders-logo.jpg" alt="Logo">
+        </a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li><a [routerLink]="['/home']" href="">Home</a></li>
+          <li><a [routerLink]="['/topOffers']" href="">Top Offers</a></li>
+          <li><a [routerLink]="['/events']" href="">Events</a></li>
+          <li><a [routerLink]="['/smallTalks']" href="">Small talks</a></li>
+          <li><a [routerLink]="['/relaxZone']" href="">Relax zone</a></li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="">
+        About <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a [routerLink]="['/About us']" href="">About us</a></li>
+              <li><a [routerLink]="['/Contact us']" href="">Contact us</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href=""><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+          <li><a href=""><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href=""><span class="glyphicon glyphicon-user"></span> Your Account</a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a [routerLink]="['/Recomended']" href="">Recomended</a></li>
+              <li><a [routerLink]="['/My stuff']" href="">My stuff</a></li>
+            </ul>
+          </li>
+          <li><a [routerLink]="['/Cart']" href=""><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+          <li><a [routerLink]="['/home']" href=""><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main>
+    <section>
+      <router-outlet></router-outlet>
+    </section>
+  </main>
+</div>
+
+<footer id="footer" class="container-fluid text-center">
+  <form  class="form-inline">
+      <input id="footer-input-width" type="email" class="form-control" size="50" placeholder="Get deals by Email Address">
+      <button id="footer-btn-width" type="button" class="btn btn-danger">Subscribe</button>
+  </form>
+  <div id="social-icons" class="clearfix">
+    <br>
+    <a href=''><i class="fa fa-twitch fa-3x fa-fw"></i></a>
+    <a href=''><i class="fa fa-facebook fa-3x fa-fw"></i></a>
+    <a href=''><i class="fa fa-twitter fa-3x fa-fw"></i></a>
+    <a href=''><i class="fa fa-youtube-play fa-3x fa-fw"></i></a>
+    <a href=''><i class="fa fa-rss fa-3x fa-fw"></i></a>
+    <a href=''><i class="fa fa-vine fa-3x fa-fw"></i></a>
+    <a href=''><i class="fa fa-flickr fa-3x fa-fw"></i></a>
+    <a href=''><i class="fa fa-linkedin fa-3x fa-fw"></i></a>
+  </div>
+</footer>

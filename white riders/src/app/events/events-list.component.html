@@ -1,0 +1,11 @@
+<article>
+  <h4>My events</h4>
+
+  <ul class="event">
+    <li *ngFor="let event of events">
+      <a href="" [routerLink]="[event.id]">
+       {{event.id}}. {{event.name}}
+      </a>
+    </li>
+  </ul>
+</article>

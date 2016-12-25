@@ -1,0 +1,22 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "name": "Jump board",
+            "price": "6.89",
+            "picture": "http://previews.123rf.com/images/bowie15/bowie151111/bowie15111100115/11309318-Young-man-snowboarding-in-the-mountains-Stock-Photo-snowboard-jump.jpg"
+        },
+        {
+            "id": 2,
+            "name": "Jump board",
+            "price": "12.89",
+            "picture": "http://previews.123rf.com/images/bowie15/bowie151111/bowie15111100115/11309318-Young-man-snowboarding-in-the-mountains-Stock-Photo-snowboard-jump.jpg"
+        },
+        {
+            "id": 3,
+            "name": "Jump board",
+            "price": "9.89",
+            "picture": "http://previews.123rf.com/images/bowie15/bowie151111/bowie15111100115/11309318-Young-man-snowboarding-in-the-mountains-Stock-Photo-snowboard-jump.jpg"
+        }
+    ]
+}
