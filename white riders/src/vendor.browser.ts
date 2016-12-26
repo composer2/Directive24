@@ -19,7 +19,7 @@ import '@angularclass/hmr';
 
 // RxJS
 import 'rxjs';
-
+import 'jquery';
 if ('production' === ENV) {
   // Production
 

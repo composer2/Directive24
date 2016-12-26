@@ -9,7 +9,7 @@ export class TopOffers {
   id: number;
   name: string;
   price: number;
-  picture: string;
+  pictures: string[];
   description: string;
   freeDelivery: boolean;
   inStock: boolean;

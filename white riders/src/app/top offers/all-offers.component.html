@@ -15,7 +15,7 @@
   <div class="offers" *ngFor="let offer of allOffers">
     <div class="media">
       <div class="media-left">
-        <img src="{{offer.picture}}" class="media-object" width="133px" height="133px" alt="{{offer.name}}">
+        <img src="{{offer.pictures[0]}}" class="media-object" width="133px" height="133px" alt="{{offer.name}}">
       </div>
       <div class="media-body">
         <h4 class="media-heading"><a href="" [routerLink]="[offer.id]">{{offer.name}}</a></h4>
