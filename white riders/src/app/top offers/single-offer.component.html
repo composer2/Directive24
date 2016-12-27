@@ -12,14 +12,14 @@
                 <!-- Carousel items -->
                 <div class="carousel-inner">
                   <div class="active item">
-                    <img src="{{singleOffer.pictures[0]}}">
+                    <img [src]="imgSrc">
                   </div>
                 </div>
                 <!-- Carousel nav -->
-                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <a (click)="onPrev($event)" class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
                   <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
-                <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <a (click)="onNext($event)" class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
                   <span class="glyphicon glyphicon-chevron-right"></span>
                 </a>
               </div>
@@ -27,109 +27,81 @@
           </div>
         </div>
       </div>
-      <h1 id="offer-name">Lucky Bums Kids Plastic Snowboard</h1>
-      <p id="stars"> &#9733; &#9733; &#9733; &#9733; &#9733; <a href="">10 customer reviews</a><span id="separator"> | </span>
-        <a href="">3 answered questions</a>
-      </p>
-      <hr>
-      <div id="price-btns">
-        <h5>Price: <span id="price-color">$19.89</span></h5>
-        <a href="" class="btn btn-info btn-default" role="button"><span class="glyphicon glyphicon-shopping-cart"> Add</span></a>
-        <a href="" class="btn btn-info btn-danger" role="button">Buy now</a>
+      <h1 id="offer-name">{{singleOffer.name}}</h1>
+      <p id="stars"> &#9733; &#9733; &#9733; &#9733; &#9733;
+        <a onclick="window.scrollTo(0, 800);" >10 customer reviews</a><span id="separator"> | </span>
+<a onclick="window.scrollTo(0, 1800);" >3 answered questions</a>
+</p>
+<hr>
+<div id="price-btns">
+  <h5>Price: <span id="price-color">{{singleOffer.price | currency:'USD':true:'1.2-2'}}</span></h5>
+          <h5 *ngIf="singleOffer.inStock" class="green-text">In stock</h5>
+          <p *ngIf="singleOffer.freeDelivery"><strong>FREE delivery</strong></p>
+          <p>sold by <a href="www.amazon.com" class="sold-by">{{singleOffer.soldBy}}</a></p>
+  <a href="" class="btn btn-info btn-default" role="button"><span class="glyphicon glyphicon-shopping-cart"> Add</span></a>
+  <a href="" class="btn btn-info btn-danger" role="button">Buy now</a>
+</div>
+<hr>
+<!--/Slider-->
+<!--thumbs-->
+<div class="col-sm-12" id="slider-thumbs">
+  <!-- Bottom switcher of slider -->
+  <ul class="hide-bullets">
+    <li class="col-sm-2" *ngFor="let picture of allpictures; let i = index;">
+      <a class="thumbnail" id="carousel-selector-{{i}}">
+        <img (click)="onClick($event)" src="{{picture}}" alt="{{singleOffer.name}}" id="{{i}}">
+      </a>
+    </li>
+  </ul>
+</div>
+<!--thumbs-->
+<div id="bullet-description">
+  <!--<strong><h4> Product Details </h4></strong>-->
+  <ul>
+    <li *ngFor="let bulletText of description">{{bulletText}}</li>
+  </ul>
+</div>
+</div>
+<hr>
+<div id="customer-reviews">
+  <div *ngIf="allCustomerReviews && allCustomerReviews.length > 0">
+    <h2 id="reviews">Customer reviews</h2>
+    <br>
+    <div class="panel panel-default" *ngFor="let review of allCustomerReviews">
+      <div class="panel-heading">
+        <p id="stars"> &#9733; &#9733; &#9733; &#9733; &#9734; <strong id="review-text">{{review.title}}</strong></p>
+        <p id="heading-review">By <a href="">{{review.user}}</a> {{review.date | date: 'yMMMMd' }}</p>
       </div>
-      <hr>
-      <div>
-        <!--<strong><h4> Product Details </h4></strong>-->
-        <ul>
-          <li>Beginner snowboard is great choice for kids to snowboarding in backyard or on nearby sledding hill</li>
-          <li>Smooth bottom board with traditional snowboard cut</li>
-          <li>Rugged design includes pre-mounted adjustable bindings that accommodate snow boots; durable latch system ensures
-            secure fit</li>
-          <li>Recommended for riders age nine and up; since it does not include metal edges, snowboard not recommended for ski
-            resort use</li>
-          <li>Limited lifetime manufacturer's warranty against defects in materials and workmanship</li>
-        </ul>
+      <div class="panel-body">
+        <p>{{review.comment}}</p>
       </div>
-      <!--/Slider-->
-      <!--thumbs-->
-      <div class="col-sm-12" id="slider-thumbs">
-        <!-- Bottom switcher of slider -->
-        <ul class="hide-bullets">
-          <li class="col-sm-2" *ngFor="let picture of allpictures; let i = index;">
-            <a class="thumbnail" id="carousel-selector-{{i}}">
-              <img src="{{picture}}" alt="{{singleOffer.name}}">
-            </a>
-          </li>
-        </ul>
-      </div>
-      <!--thumbs-->
-    </div>
-    <hr>
-    <div id="customer-reviews">
-      <h2>Customer reviews</h2>
-      <br>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <p id="stars"> &#9733; &#9733; &#9733; &#9733; &#9734; <strong id="review-text"> Go for it</strong></p>
-          <p id="heading-review">By <a href="">Composer2</a> on February 10, 2014</p>
-        </div>
-        <div class="panel-body">
-          <p>I picked this up for my girlfriends 8 year old son who was asking for a snowboard but, he had never used one so
-            I didn't want to spend a fortune for what might not be used much. The board arrived fast and it was actually
-            a pretty good board. Granted, as some of the other reviews mentioned, this is a plastic board and so the edges
-            aren't that sharp but, we're not using it on a ski slope. We have a nice area near our house that has hills about
-            25 feet high so, this was perfect. The board was sturdy, it allowed him to attach to and get out of the bindings
-            easily and most of all, he loved it and he ended up being pretty impressive on it. For fifty dollars, this was
-            great buy for a beginning boarder.</p>
-        </div>
-      </div>
-
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <p id="stars"> &#9733; &#9733; &#9733; &#9733; &#9733; <strong id="review-text"> My Two Boys are Lucky Bums</strong></p>
-          <p id="heading-review">By <a href="">Stamat</a> on February 10, 2014</p>
-        </div>
-        <div class="panel-body">
-          <p>We got 2 Snowboards for our boys for Christmas. What a Hit!! The stickers didn't fair so well. But the boards are
-            Great!
-          </p>
-        </div>
-      </div>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <p id="stars"> &#9733; &#9733; &#9733; &#9733; &#9734; <strong id="review-text"> Good starter</strong></p>
-          <p id="heading-review">By <a href="">Carol</a> on February 10, 2014</p>
-        </div>
-        <div class="panel-body">
-          <p>this has been a good starter for my 4yr old. gets him used to balancing while riding. the plastic is not very slick
-            so speed is an issue. waxing the bottom with car wax has helped. keep in mind it is plastic and this is truley
-            the first step to see if your child wants to deal with the pains of snowboarding.i would buy again</p>
-        </div>
-      </div>
-    </div>
-    <div id="questions-answers">
-      <hr>
-      <h1><strong>Customer Questions & Answers</strong></h1>
-      <br>
-      <p><strong><span class="label label-primary">Question:</span></strong> my son is 6 yrs old and about 50 lbs, will 95 cm
-        work well or too big?</p>
-      <p><strong><span id="answer" class="label label-success">Answer:</span></strong> He will be fine. This is made to pretty
-        much go straight. Hard to ride an edge on it </p>
-      <br>
-      <p><strong><span class="label label-primary">Question:</span></strong> Do the straps adjust</p>
-      <p><strong><span class="label label-success">Answer:</span></strong> Yes, there is a ratcheting buckle that allows adjustment
-        for correct fit. </p>
-      <br>
-      <p><strong><span class="label label-primary">Question:</span></strong> How do I know what size to buy?? It says 95cm,
-        95-cm, 120cm, 120-cm, what do the dashes (-) mean?. It will be for a 10 year old that weighs 70-75lbs.</p>
-      <p><strong><span class="label label-success">Answer:</span></strong> That dash doesn't mean anything. It's either 95 or
-        120 cm. The 120 cm is better for your son, but frankly, my son used it once and haven't touched it since. I should
-        have gotten him a real (used) snowboard. </p>
-      <br>
-      <p><strong><span class="label label-primary">Question:</span></strong> Is there a max weight limit?</p>
-      <p><strong><span class="label label-success">Answer:</span></strong> Thank you for your inquiry. These are beginner snowboards
-        for kids. The 120cm board should work fine for kids in the 9-12 range, and up to around 100 lbs. </p>
-      <br>
     </div>
   </div>
+
+</div>
+<div id="questions-answers">
+  <hr>
+  <h1 id="answers"><strong>Customer Questions & Answers</strong></h1>
+  <br>
+  <p><strong><span class="label label-primary">Question:</span></strong> my son is 6 yrs old and about 50 lbs, will 95 cm work
+    well or too big?</p>
+  <p><strong><span id="answer" class="label label-success">Answer:</span></strong> He will be fine. This is made to pretty much
+    go straight. Hard to ride an edge on it </p>
+  <br>
+  <p><strong><span class="label label-primary">Question:</span></strong> Do the straps adjust</p>
+  <p><strong><span class="label label-success">Answer:</span></strong> Yes, there is a ratcheting buckle that allows adjustment
+    for correct fit. </p>
+  <br>
+  <p><strong><span class="label label-primary">Question:</span></strong> How do I know what size to buy?? It says 95cm, 95-cm,
+    120cm, 120-cm, what do the dashes (-) mean?. It will be for a 10 year old that weighs 70-75lbs.</p>
+  <p><strong><span class="label label-success">Answer:</span></strong> That dash doesn't mean anything. It's either 95 or 120
+    cm. The 120 cm is better for your son, but frankly, my son used it once and haven't touched it since. I should have gotten
+    him a real (used) snowboard. </p>
+  <br>
+  <p><strong><span class="label label-primary">Question:</span></strong> Is there a max weight limit?</p>
+  <p><strong><span class="label label-success">Answer:</span></strong> Thank you for your inquiry. These are beginner snowboards
+    for kids. The 120cm board should work fine for kids in the 9-12 range, and up to around 100 lbs. </p>
+  <br>
+</div>
+</div>
 </div>

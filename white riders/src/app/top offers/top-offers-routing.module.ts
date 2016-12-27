@@ -5,6 +5,7 @@ import { SingleOfferComponent } from './single-offer.component';
 import { TopOffersComponent } from './top-offers.component';
 import { AllOffersComponent } from './all-offers.component';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -17,7 +18,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [
+    RouterModule.forChild(routes)
+    ],
   exports: [RouterModule]
 })
 export class TopOffersRoutingModule { }

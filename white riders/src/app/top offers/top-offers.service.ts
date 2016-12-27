@@ -10,10 +10,11 @@ export class TopOffers {
   name: string;
   price: number;
   pictures: string[];
-  description: string;
+  description: string[];
   freeDelivery: boolean;
   inStock: boolean;
   soldBy: string;
+  customerReviews;
 }
 
 @Injectable()

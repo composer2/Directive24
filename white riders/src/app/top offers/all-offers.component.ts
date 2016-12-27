@@ -36,6 +36,6 @@ export class AllOffersComponent implements OnInit {
   ngOnInit() {
     this.allOffers = [];
     this.topOffersService.getAllOffers()
-      .subscribe(offers => { this.allOffers = offers; console.log(this.allOffers); });
+      .subscribe(offers => this.allOffers = offers);
   }
 }

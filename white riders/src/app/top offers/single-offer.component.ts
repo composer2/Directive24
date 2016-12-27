@@ -1,13 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-declare var $: JQueryStatic;
+
 
 import { TopOffers, TopOffersService } from './top-offers.service';
 
 @Component({
-  selector: 'single-offer',
-  templateUrl: 'single-offer.component.html',
-  styles: [`
+    selector: 'single-offer',
+    templateUrl: 'single-offer.component.html',
+    styles: [`
   .hide-bullets {
     list-style:none;
     margin-left: -40px;
@@ -52,6 +52,24 @@ import { TopOffers, TopOffersService } from './top-offers.service';
 #heading-review{
 font-size: 14px;
 font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif
+}
+#heading-review a:hover{
+    color:#E74B3C;
+}
+#stars a:hover{
+    color:#E74B3C;
+}
+.green-text{
+    color:green;
+}
+.sold-by{
+    color:blue;
+}
+.sold-by a:hover{
+    color:#E74B3C;
+}
+#bullet-description{
+    clear:both;
 }
 @media  screen and (max-width: 1020px) {
 #price-color{
@@ -107,42 +125,84 @@ font-size:20px;
 `]
 })
 export class SingleOfferComponent implements OnInit {
-  @Input() singleOffer: TopOffers;
-  allpictures;
-  private id: any;
+    @Input() singleOffer: TopOffers;
+    allpictures;
+    imgSrc;
+    imgId;
+    description;
+    allCustomerReviews;
+    private id: any;
 
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private topOffersService: TopOffersService) { }
+    constructor(
+        private route: ActivatedRoute,
+        private router: Router,
+        private topOffersService: TopOffersService) { }
 
-  ngOnInit() {
-    if (!this.singleOffer) {
-      this.route
-        .params
-        .map(params => params['id'])
-        .do(id => this.id = +id)
-        .subscribe(id => this.getOffer());
+    ngOnInit() {
+        if (!this.singleOffer) {
+            this.route
+                .params
+                .map(params => params['id'])
+                .do(id => this.id = +id)
+                .subscribe(id => this.getOffer());
+        }
     }
-  }
+    onClick(event) {
+        let srcValue = event.srcElement.attributes.src;
+        let value = srcValue.nodeValue;
+        this.imgSrc = value;
 
-  private getOffer() {
-    this.topOffersService.getSingleOffer(this.id)
-      .subscribe((offer: TopOffers) => this.setEditOffer(offer));
-  }
+        let idValue = event.srcElement.attributes.id;
+        let value2 = idValue.nodeValue;
+        this.imgId = value2;
 
-  private gotoTopOffers() {
-    let route = ['/topOffers'];
-    this.router.navigate(route);
-  }
-
-  private setEditOffer(singleOffer: TopOffers) {
-    if (singleOffer) {
-      this.singleOffer = singleOffer;
-      this.allpictures = singleOffer.pictures;
-      console.log(this.allpictures);
-    } else {
-      this.gotoTopOffers();
     }
-  }
+    onPrev(event) {
+        if (this.imgId === 0) {
+            let len = this.allpictures.length - 1;
+            this.imgSrc = this.allpictures[len];
+            this.imgId = len;
+        } else {
+            let num = +this.imgId;
+            this.imgSrc = this.allpictures[num - 1];
+            this.imgId = num - 1;
+
+        }
+    }
+    onNext(event) {
+        if (this.imgId === this.allpictures.length - 1) {
+            this.imgSrc = this.allpictures[0];
+            this.imgId = 0;
+        } else {
+            let num = +this.imgId;
+            this.imgSrc = this.allpictures[num + 1];
+            this.imgId = num + 1;
+
+        }
+    }
+
+    private getOffer() {
+        this.topOffersService.getSingleOffer(this.id)
+            .subscribe((offer: TopOffers) => this.setEditOffer(offer));
+    }
+
+    private gotoTopOffers() {
+        let route = ['/topOffers'];
+        this.router.navigate(route);
+    }
+
+    private setEditOffer(singleOffer: TopOffers) {
+        if (singleOffer) {
+            this.singleOffer = singleOffer;
+            this.allpictures = singleOffer.pictures;
+            this.imgSrc = singleOffer.pictures[0];
+            this.imgId = 0;
+            this.description = singleOffer.description;
+            this.allCustomerReviews = singleOffer.customerReviews;
+            console.log(this.allCustomerReviews);
+        } else {
+            this.gotoTopOffers();
+        }
+    }
+
 }
