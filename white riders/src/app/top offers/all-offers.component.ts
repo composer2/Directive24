@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { TopOffers } from '../shared/top-offers';
@@ -28,17 +28,46 @@ import { TopOffersService } from '../shared/top-offers.service';
     .media-body > p {
       font-size:10px;
     }
-  `]
+  `],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class AllOffersComponent implements OnInit {
   allOffers: TopOffers[];
-
+  filterName: string = '-stars';
   constructor(private topOffersService: TopOffersService) { }
+
+  changePriceOrder(event) {
+    if (this.filterName === 'price') {
+      this.filterName = '-price';
+    } else if (this.filterName === '-price') {
+      this.filterName = 'price';
+    } else {
+      this.filterName = 'price';
+    }
+  }
+  changeNameOrder(event) {
+    if (this.filterName === 'name') {
+      this.filterName = '-name';
+    } else if (this.filterName === '-name') {
+      this.filterName = 'name';
+    } else {
+      this.filterName = 'name';
+    }
+  }
+  changeBestSellerOrder(event) {
+    if (this.filterName === 'stars') {
+      this.filterName = '-stars';
+    } else if (this.filterName === '-stars') {
+      this.filterName = 'stars';
+    } else {
+      this.filterName = '-stars';
+    }
+  }
 
   ngOnInit() {
     this.allOffers = [];
     this.topOffersService.getAllOffers()
       .subscribe(offers => { this.allOffers = offers; console.log(this.allOffers); });
-
   }
+
 }

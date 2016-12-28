@@ -8,4 +8,5 @@ export class TopOffers {
   inStock: boolean;
   soldBy: string;
   customerReviews;
-}
+  stars: number;
+};

@@ -6,13 +6,13 @@
   </div>
   <!--sort buttons-->
   <div class="btn-group btn-group-justified">
-    <a href="#" class="btn btn-default">Best Sellers</a>
-    <a href="#" class="btn btn-default">Newest</a>
-    <a href="#" class="btn btn-default">Price <span class="glyphicon glyphicon-arrow-up"></span><span class="glyphicon glyphicon-arrow-down"></span></a>
+    <a  class="btn btn-default" (click)="changeBestSellerOrder($event)">Best sellers</a>
+    <a  class="btn btn-default" (click)="changeNameOrder($event)">Name</a>
+    <a  class="btn btn-default" (click)="changePriceOrder($event)">Price <span class="glyphicon glyphicon-arrow-up"></span><span class="glyphicon glyphicon-arrow-down"></span></a>
   </div>
   <br>
   <!--events-->
-  <div class="offers" *ngFor="let offer of allOffers">
+  <div class="offers" *ngFor="let offer of (allOffers | orderBy:[filterName])">
     <div class="media">
       <div class="media-left">
         <img src="{{offer.pictures[0]}}" class="media-object" width="133px" height="133px" alt="{{offer.name}}">
