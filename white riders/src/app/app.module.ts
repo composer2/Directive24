@@ -6,6 +6,8 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { HomeModule } from './home/home.module';
 import { AppRoutingModule, routableComponents } from './app-routing.module';
+import { TopOffersService } from './shared/top-offers.service';
+
 
 @NgModule({
     imports: [
@@ -18,8 +20,11 @@ import { AppRoutingModule, routableComponents } from './app-routing.module';
     ],
     declarations: [
         AppComponent,
-        routableComponents
+        routableComponents,
     ],
+
+    providers: [TopOffersService],
+
     bootstrap: [AppComponent]
 })
 export class AppModule { }

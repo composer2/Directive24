@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { TopOffers } from '../shared/top-offers';
+import { TopOffersService } from '../shared/top-offers.service';
 
-import { TopOffers, TopOffersService } from './top-offers.service';
 
 @Component({
     selector: 'single-offer',
@@ -17,9 +18,9 @@ import { TopOffers, TopOffersService } from './top-offers.service';
 .thumbnail {
     padding: 0;
 }
-
 .carousel-inner>.item>img, .carousel-inner>.item>a>img {
     width: 100%;
+    height:400px;
 }
 #slider-box{
     width: 40%;
@@ -27,7 +28,7 @@ import { TopOffers, TopOffersService } from './top-offers.service';
 }
 #slider-thumbs{
     width: 40%;
-    height: 80%;     
+    height: 50%;     
     clear: both; 
 }
 #price-color{
@@ -72,6 +73,14 @@ font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif
     clear:both;
 }
 @media  screen and (max-width: 1020px) {
+.carousel-inner>.item>img, .carousel-inner>.item>a>img {
+    width: 100%;
+    height:400px;
+}
+#slider-box{
+    width: 50%;
+    float: left;    
+}
 #price-color{
     font-size: 14px;
 }
@@ -122,6 +131,12 @@ font-size:20px;
   margin-left:15px;
 }
 }
+@media  screen and (max-width: 326px) {
+    .carousel-inner>.item>img, .carousel-inner>.item>a>img {
+    width: 100%;
+    height:200px;
+}
+}
 `]
 })
 export class SingleOfferComponent implements OnInit {
@@ -143,7 +158,7 @@ export class SingleOfferComponent implements OnInit {
             this.route
                 .params
                 .map(params => params['id'])
-                .do(id => this.id = +id)
+                .do(id => { this.id = id; console.log(this.id); })
                 .subscribe(id => this.getOffer());
         }
     }
@@ -199,7 +214,7 @@ export class SingleOfferComponent implements OnInit {
             this.imgId = 0;
             this.description = singleOffer.description;
             this.allCustomerReviews = singleOffer.customerReviews;
-            console.log(this.allCustomerReviews);
+            console.log(singleOffer);
         } else {
             this.gotoTopOffers();
         }

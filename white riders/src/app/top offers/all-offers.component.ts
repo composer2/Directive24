@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
-import { TopOffers, TopOffersService } from './top-offers.service';
+import { TopOffers } from '../shared/top-offers';
+import { TopOffersService } from '../shared/top-offers.service';
 
 @Component({
   selector: 'all-offers',
@@ -36,6 +38,7 @@ export class AllOffersComponent implements OnInit {
   ngOnInit() {
     this.allOffers = [];
     this.topOffersService.getAllOffers()
-      .subscribe(offers => this.allOffers = offers);
+      .subscribe(offers => { this.allOffers = offers; console.log(this.allOffers); });
+
   }
 }

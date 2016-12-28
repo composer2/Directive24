@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { HomeInfo, HomeService } from './home.service';
+import { TopOffers } from '../shared/top-offers';
+import { TopOffersService } from '../shared/top-offers.service';
 
 @Component({
-  selector: 'offers-list',
-  templateUrl: 'offers-list.component.html',
+  selector: 'home-list',
+  templateUrl: 'home-list.component.html',
   styles: [`
     .offersList {list-style-type: none;}
     *.offersList li {padding: 4px;cursor: pointer;}
@@ -18,11 +19,11 @@ import { HomeInfo, HomeService } from './home.service';
   `]
 })
 export class OffersListComponent implements OnInit {
-  offersList: Observable<HomeInfo[]>;
+  offersList: Observable<TopOffers[]>;
 
-  constructor(private homeService: HomeService) { }
+  constructor(private homeService: TopOffersService) { }
 
   ngOnInit() {
-    this.offersList = this.homeService.getInfo();
+    this.offersList = this.homeService.getAllOffers();
   }
 }

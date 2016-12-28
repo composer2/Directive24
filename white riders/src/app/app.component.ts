@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'start-app',
-  templateUrl: 'app.component.html',
-  styles: [`
+    selector: 'start-app',
+    templateUrl: 'app.component.html',
+    styles: [`
     nav ul {list-style-type: none;}
     nav ul li {padding: 4px;cursor: pointer;display:inline-block}
     /* Remove the navbar's default rounded borders and increase the bottom margin */ 
@@ -101,6 +101,6 @@ img.logo{
         margin-top:20px;
     }
   }
-  `]
+  `],
 })
 export class AppComponent { }

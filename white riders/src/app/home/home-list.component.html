@@ -36,11 +36,11 @@
   </div>
   <br>
   <div class="row">
-    <div class="col-sm-4" *ngFor="let offer of offersList | async">
-      <div class="panel panel-primary">
-        <div class="panel-heading"><a id="offer-name" href="" [routerLink]="[offer.id]">{{offer.name}}</a></div>
+    <div class="col-sm-4" *ngFor="let offer of offersList | async; let i=index">
+      <div class="panel panel-primary" *ngIf="i<3" >
+        <div class="panel-heading"><a id="offer-name" href="" [routerLink]="['/topOffers/'+offer._id]">{{offer.name | initCapLetter}}</a></div>
         <div class="panel-body">
-          <img src="{{offer.picture}}" class="img-responsive" style="width:100%" alt="{{offer.name}}"></div>
+          <img src="{{offer.pictures[0]}}" class="img-responsive" style="width:100%" alt="{{offer.name | initCapLetter}}"></div>
           <div class="panel-footer">Buy it now for only <span id="prize-size" class="label label-default">{{offer.price | currency:'USD':true:'1.2-2'}}</span>
             <a id="buy-link" href="" class="btn btn-danger btn-block" role="button">Buy now</a>
         </div>

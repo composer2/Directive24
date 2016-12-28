@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { SingleOfferComponent } from './single-offer.component';
 import { HomeComponent } from './home.component';
-import { OffersListComponent } from './offers-list.component';
+import { OffersListComponent } from './home-list.component';
 
 const routes: Routes = [
   {
@@ -11,7 +10,7 @@ const routes: Routes = [
     component: HomeComponent,
     children: [
       { path: '', component: OffersListComponent },
-      { path: ':id', component: SingleOfferComponent },
+      // { path: ':id', component: SingleOfferComponent },
     ]
   }
 ];
@@ -25,5 +24,4 @@ export class HomeRouterModule { }
 export const routedComponents = [
   HomeComponent,
   OffersListComponent,
-  SingleOfferComponent
 ];
