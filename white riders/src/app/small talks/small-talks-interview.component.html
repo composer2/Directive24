@@ -1,3 +1,25 @@
-<div>
-    <h1>Hello from all super star this week</h1>
+<div class="container" id="tourpackages-carousel">
+	<h2 class="text-center"><strong id="underline-bottom">Interviews</strong></h2>
+	<p class="text-center" id="interviews-description">Get the latest exclusive interviews with all the pro riders this season as they tell us what they're up to and how it’s
+		going, plus we catch up with riders with the weirdest, wackiest and raddest jobs in the mountains. From Jenny Jones on
+		Sochi and Jamie Nicholls exclusives, to beer brewers in Morzine and mountain bodyguards, read it all here.</p>
+	<hr>
+	<div class="row" id>
+		<div *ngFor="let smallTalk of smallTalks">
+			<a href="" [routerLink]="[smallTalk._id]" id="article-link">
+				<div class="col-xs-12 col-sm-6 col-md-4">
+					<div class="thumbnail">
+						<img id="picture-height" src="{{smallTalk.pictures[0]}}" alt="{{smallTalk.articleName}}">
+						<div class="caption" id="caption-box">
+							<h6 class="text-center" id="interview-small-label">INTERVIEWS</h6>
+							<h4 class="text-center" id="article-heading"><strong>{{smallTalk.articleName}}</strong></h4>
+							<p class="text-center">{{smallTalk.shortDescription}}</p>
+						</div>
+					</div>
+				</div>
+			</a>
+		</div>
+
+	</div>
+	<!-- End row -->
 </div>
