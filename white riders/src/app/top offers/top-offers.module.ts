@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { InitCapsPipe } from '../shared/init.pipe';
-import { OrderBy } from '../shared/orderBy-pipe';
+import { InitCapsPipe } from './all-offers-init.pipe';
+import { OrderBy } from './single-offer-orderBy-pipe';
 import { routedComponents, TopOffersRoutingModule } from './top-offers-routing.module';
 
 @NgModule({

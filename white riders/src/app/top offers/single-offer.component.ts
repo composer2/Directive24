@@ -158,7 +158,7 @@ export class SingleOfferComponent implements OnInit {
             this.route
                 .params
                 .map(params => params['id'])
-                .do(id => { this.id = id; console.log(this.id); })
+                .do(id => this.id = id)
                 .subscribe(id => this.getOffer());
         }
     }
@@ -214,7 +214,6 @@ export class SingleOfferComponent implements OnInit {
             this.imgId = 0;
             this.description = singleOffer.description;
             this.allCustomerReviews = singleOffer.customerReviews;
-            console.log(singleOffer);
         } else {
             this.gotoTopOffers();
         }

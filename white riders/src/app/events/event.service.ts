@@ -1,28 +1,43 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
-
-import { CONFIG } from '../config';
-
-let eventsUrl = CONFIG.baseUrls.events;
+import { Http, Response, Headers } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
 export class Event {
-  id: number;
+  _id: string;
+  day: number;
+  month: string;
   name: string;
-  type: string;
+  picture: string;
+  shortDescription: string;
+  website: string;
 }
 
 @Injectable()
 export class EventService {
-  constructor(private http: Http) {}
 
-  getEvent(id: number) {
-    return this.getEvents()
-      .map(event => event.find(ev => ev.id === id));
+  private headersAllEvents: Headers = new Headers({
+    'Authorization': 'Basic a2lkX1N5dE1yRXhCZzo3M2VlNGYzNTRkNjI0YzBiOGYwMTI3NmYxYjM5OWNkYQ=='
+  });
+
+  constructor(private http: Http) { }
+
+  getEvents(): Observable<any> {
+    return this.http.get(
+      'https://baas.kinvey.com/appdata/kid_SytMrExBg/events',
+      { headers: this.headersAllEvents })
+      .map(this.checkForErrors)
+      .catch(err => Observable.throw(err))
+      .map((response: Response) => response.json());
   }
 
-  getEvents() {
-    return this.http
-      .get(eventsUrl)
-      .map((response: Response) => <Event[]>response.json().data);
+  private checkForErrors(resp: Response) {
+    if (resp.status >= 200 && resp.status < 300) {
+      return resp;
+    } else {
+      let error = new Error(resp.statusText);
+      error['response'] = resp;
+      console.log(error);
+      throw error;
+    }
   }
 }
