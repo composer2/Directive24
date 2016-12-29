@@ -9,7 +9,6 @@ import { AppRoutingModule, routableComponents } from './app-routing.module';
 import { TopOffersService } from './shared/top-offers.service';
 
 import { Api } from './shared/kinvey-api.service';
-import { UserService } from './shared/register.service';
 
 
 @NgModule({
@@ -26,7 +25,7 @@ import { UserService } from './shared/register.service';
         routableComponents,
     ],
 
-    providers: [TopOffersService, Api, UserService],
+    providers: [TopOffersService, Api],
 
     bootstrap: [AppComponent]
 })
