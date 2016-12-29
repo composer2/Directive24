@@ -6,7 +6,7 @@ import { SmallTalksInterviewComponent } from './small-talks-interview.component'
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: '',
     component: SmallTalksComponent,
     children: [
       { path: '', component: SmallTalksInterviewComponent },
