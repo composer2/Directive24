@@ -1,11 +1,42 @@
-<article>
-  <h4>My events</h4>
 
-  <ul class="event">
-    <li *ngFor="let event of events">
-      <a href="" [routerLink]="[event.id]">
-       {{event.id}}. {{event.name}}
-      </a>
-    </li>
-  </ul>
-</article>
+	<div class="container">
+		<div class="row">
+			<div class="[ col-xs-12 col-sm-offset-2 col-sm-8 ]">
+				<h2>Events</h2>
+				<div id="custom-search-input">
+					<div class="input-group col-md-12">
+						<input type="text" class="  search-query form-control" placeholder="Search" (keyup)="onKey($event)" />
+						<span class="input-group-btn">
+              <button class="btn btn-primary" type="button"><span class=" glyphicon glyphicon-search"></span></button>
+						</span>
+					</div>
+				</div>
+				<br>
+				<!--single event start-->
+				<ul class="event-list">
+					<li *ngFor="let event of (events | searchFilter:values)">
+						<time>
+							<span class="day">{{event.day}}</span>
+							<span class="month">{{event.month}}</span>
+						</time>
+						<img alt="{{event.name}}" src="{{event.picture}}" />
+						<div class="info">
+							<h2 class="title"><a [routerLink]="[event._id]"> {{event.name}}</a></h2>
+							<p class="desc">{{event.shortDescription}}</p>
+							<ul>
+								<li style="width:50%;"><a href="{{event.website}}"><span class="fa fa-globe"></span> Website</a></li>
+							</ul>
+						</div>
+						<div class="social">
+							<ul>
+								<li class="facebook" style="width:33%;"><a href=""><span class="fa fa-facebook"></span></a></li>
+<li class="twitter" style="width:34%;"><a href=""><span class="fa fa-twitter"></span></a></li>
+<li class="google-plus" style="width:33%;"><a href=""><span class="fa fa-google-plus"></span></a></li>
+</ul>
+</div>
+</li>
+</ul>
+<!--single event end-->
+</div>
+</div>
+</div>

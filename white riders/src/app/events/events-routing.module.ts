@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { EventComponent } from './event.component';
 import { EventsComponent } from './events.component';
 import { EventListComponent } from './events-list.component';
 
@@ -11,7 +10,6 @@ const routes: Routes = [
     component: EventsComponent,
     children: [
       { path: '', component: EventListComponent },
-      { path: ':id', component: EventComponent },
     ]
   }
 ];
@@ -25,5 +23,4 @@ export class EventsRoutingModule { }
 export const routedComponents = [
   EventsComponent,
   EventListComponent,
-  EventComponent
 ];
