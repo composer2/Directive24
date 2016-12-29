@@ -8,6 +8,9 @@ import { HomeModule } from './home/home.module';
 import { AppRoutingModule, routableComponents } from './app-routing.module';
 import { TopOffersService } from './shared/top-offers.service';
 
+import { Api } from './shared/kinvey-api.service';
+import { UserService } from './shared/register.service';
+
 
 @NgModule({
     imports: [
@@ -23,7 +26,7 @@ import { TopOffersService } from './shared/top-offers.service';
         routableComponents,
     ],
 
-    providers: [TopOffersService],
+    providers: [TopOffersService, Api, UserService],
 
     bootstrap: [AppComponent]
 })

@@ -3,8 +3,6 @@ import { Http, Headers, Response } from '@angular/http'
 import { Observable } from 'rxjs/Observable'
 
 @Injectable()
-
-
 export class Api {
     KINVEY_APP_ID = 'kid_SytMrExBg';
     KINVEY_APP_SECRET = 'fc030205b84c4104988e3749d45d37a7';
@@ -13,8 +11,8 @@ export class Api {
     USERNAME_STORAGE_KEY = 'username-key';
     AUTH_KEY_STORAGE_KEY = 'auth-key-key';
     authBase64 = btoa(this.KINVEY_APP_ID + ':' + this.KINVEY_MASTER_SECRET);
-
-
+    authBase64App = btoa(this.KINVEY_APP_ID + ':' + this.KINVEY_APP_SECRET);
+    
     private headers: Headers = new Headers({
         'Content-Type': 'application/json',
         'Accept': 'application/json'
@@ -25,10 +23,18 @@ export class Api {
     });
     private allOffers = this.KINVEY_URL + 'appdata/' + this.KINVEY_APP_ID + '/allOffers';
 
+    private headersRegLogin: Headers = new Headers ({
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic ' + this.authBase64App
+
+    });
     private baseUrl: string = this.KINVEY_URL;
+    private registerUrl: string = this.baseUrl + 'user/' + this.KINVEY_APP_ID;
+    private loginUrl: string = this.registerUrl + '/login';
 
     constructor(private http: Http) {
     }
+
 
     getAllOffers(): Observable<any> {
        return this.http.get(
@@ -39,7 +45,25 @@ export class Api {
             .map(this.getJson);
     }
 
+    register(data): Observable<any> {
+        return this.http.post(
+            `${this.registerUrl}`,
+            JSON.stringify(data),
+            { headers: this.headersRegLogin })
+            .map(this.checkForErrors)
+            .catch(err => Observable.throw(err))
+            .map(this.getJson);
+    }
 
+    login(data): Observable<any> {
+        return this.http.post(
+            `${this.loginUrl}`,
+            JSON.stringify(data),
+            { headers: this.headersRegLogin })
+            .map(this.checkForErrors)
+            .catch(err => Observable.throw(err))
+            .map(this.getJson);
+    }
 
     get(path: string): Observable<any> {
         return this.http.get(

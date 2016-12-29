@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'events', loadChildren: 'app/events/events.module#EventsModule' },
   { path: 'topOffers', loadChildren: 'app/top offers/top-offers.module#TopOffersModule' },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent },
+  { path: 'users', loadChildren: 'app/register/register.module#RegisterModule'}
 ];
 
 @NgModule({
