@@ -6,8 +6,10 @@ import { User } from './user';
 
 @Injectable()
 export class UserService {
-    constructor(private http: Http,
-        private api: Api) { }
+    constructor(
+        private http: Http,
+        private api: Api
+    ) { }
 
     registerUser(data) {
         return this.api.register(data);

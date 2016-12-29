@@ -24,9 +24,11 @@ export class RegisterFormComponent {
             username: this.model.username,
             password: this.model.password
         }
+
         this.userService.registerUser(this.data)
-            .subscribe(
-                data => console.log("registred")
-            )
+            .subscribe(data => {
+                this.router.navigate(['/home']);
+                console.log(data);
+            });
     }
 }
