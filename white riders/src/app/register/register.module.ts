@@ -4,10 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { UserService } from './register.service';
 import { routedComponents, RegisterRoutingModule } from './register-routing.module';
+// import { loginRoutedComponents, LoginRoutingModule} from './login-routing.module';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, RegisterRoutingModule],
-  declarations: [routedComponents],
+  imports: [CommonModule,
+            FormsModule,
+            RegisterRoutingModule,
+            // LoginRoutingModule
+  ],
+  declarations: [routedComponents,
+  // loginRoutedComponents
+  ],
   providers: [UserService],
 })
 export class RegisterModule { }

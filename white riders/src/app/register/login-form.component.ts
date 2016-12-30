@@ -1,34 +1,32 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Api } from '../shared/kinvey-api.sevice';
+import { Api } from '../shared/kinvey-api.service';
 import { User } from './user';
 import { UserService } from './register.service';
 
 @Component({
-    selector: 'register-form',
-    templateUrl: 'register-form.component.html'
+    selector: 'login-form',
+    templateUrl: 'login-form.component.html'
 })
-
-export class RegisterFormComponent {
+export class LoginFormComponent {
     model: any = {};
-    data: any = {};
+    data: any = {}
 
     constructor(
         private router: Router,
-        private userService: UserService
+        private UserService: UserService
     ) { }
 
-    register() {
+    login() {
         this.data = {
             username: this.model.username,
-            password: this.model.password,
+            password: this.model.password
         }
 
-        this.userService.registerUser(this.data)
+        this.UserService.loginUser(this.data)
             .subscribe(data => {
                 this.router.navigate(['/home']);
-                console.log(data);
-            });
+            })
     }
 }
