@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import { CredentialsService } from './shared/credentials.service';
 
 @Component({
     selector: 'start-app',
@@ -103,4 +105,24 @@ img.logo{
   }
   `],
 })
-export class AppComponent { }
+export class AppComponent implements OnInit {
+    isUserLoggedIn = false;
+
+    constructor(
+        private credentialsService: CredentialsService
+    ) {
+        this.credentialsService.changeLoggedInStatus =
+            () =>
+                this.credentialsService.isUserLoggedIn()
+                    .subscribe(isLoggedIn => this.isUserLoggedIn = isLoggedIn);
+    }
+
+    ngOnInit() {
+        this.credentialsService.isUserLoggedIn()
+            .subscribe(isLoggedIn => this.isUserLoggedIn = isLoggedIn);
+    }
+
+    logout() {
+        this.credentialsService.clearUser();
+    }
+}
