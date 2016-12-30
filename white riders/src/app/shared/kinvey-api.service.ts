@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core'
 import { Http, Headers, Response } from '@angular/http'
 import { Observable } from 'rxjs/Observable'
 
+import { CredentialsService } from './credentials.service';
+
 @Injectable()
 export class Api {
     KINVEY_APP_ID = 'kid_SytMrExBg';
@@ -12,7 +14,8 @@ export class Api {
     AUTH_KEY_STORAGE_KEY = 'auth-key-key';
     authBase64 = btoa(this.KINVEY_APP_ID + ':' + this.KINVEY_MASTER_SECRET);
     authBase64App = btoa(this.KINVEY_APP_ID + ':' + this.KINVEY_APP_SECRET);
-    
+    authToken = '';
+
     private headers: Headers = new Headers({
         'Content-Type': 'application/json',
         'Accept': 'application/json'
@@ -23,7 +26,7 @@ export class Api {
     });
     private allOffers = this.KINVEY_URL + 'appdata/' + this.KINVEY_APP_ID + '/allOffers';
 
-    private headersRegLogin: Headers = new Headers ({
+    private headersRegLogin: Headers = new Headers({
         'Content-Type': 'application/json',
         'Authorization': 'Basic ' + this.authBase64App
 
@@ -32,12 +35,14 @@ export class Api {
     private registerUrl: string = this.baseUrl + 'user/' + this.KINVEY_APP_ID;
     private loginUrl: string = this.registerUrl + '/login';
 
-    constructor(private http: Http) {
+    constructor(
+        private http: Http,
+        private credentialsService: CredentialsService) {
     }
 
 
     getAllOffers(): Observable<any> {
-       return this.http.get(
+        return this.http.get(
             this.allOffers,
             { headers: this.headersAllOffers })
             .map(this.checkForErrors)
@@ -52,7 +57,12 @@ export class Api {
             { headers: this.headersRegLogin })
             .map(this.checkForErrors)
             .catch(err => Observable.throw(err))
-            .map(this.getJson);
+            .map(this.getJson)
+            .map(resp => {
+                this.authToken = resp._kmd.authtoken;
+                this.credentialsService.saveToken(resp.username, resp._kmd.authtoken);
+                return resp;
+            });
     }
 
     login(data): Observable<any> {
@@ -62,7 +72,12 @@ export class Api {
             { headers: this.headersRegLogin })
             .map(this.checkForErrors)
             .catch(err => Observable.throw(err))
-            .map(this.getJson);
+            .map(this.getJson)
+            .map(resp => {
+                this.authToken = resp._kmd.authtoken;
+                this.credentialsService.saveToken(resp.username, resp._kmd.authtoken);
+                return resp;
+            });
     }
 
     get(path: string): Observable<any> {
