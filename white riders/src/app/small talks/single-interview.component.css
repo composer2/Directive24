@@ -1,0 +1,26 @@
+article img{
+  margin:0 1.5em 1.5em 0;box-shadow:0 0 8px 4px black;
+  }
+article {
+   box-shadow:0 0 23px #000 !important;
+   }
+header span.glyphicon{
+  color:#DDD; 
+  text-shadow:2px 2px #111 !important;
+  filter:blur(2px);
+  -webkit-filter: blur(2px);
+-moz-filter: blur(2px);
+-o-filter: blur(2px);
+-ms-filter: blur(2px);}
+#video-tag{
+  width: 100%;
+  height: auto;
+}
+#container-article{
+  margin-top:-95px;
+  opacity: 0.3  ;
+  color: black;
+}
+#container-content-box{
+  margin-top:-95px;
+}

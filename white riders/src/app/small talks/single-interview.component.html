@@ -1,0 +1,53 @@
+<div *ngIf="singleInterview">
+	<div class="container" id="container-content-box">
+		<div class="row">
+			<div class="col-md-12">
+				<br>
+				<video id="video-tag" class="c-article-head__cover-video" muted="" loop="" autoplay="">
+					<source src="{{singleInterview.video}}" type="video/mp4">
+				</video>
+			</div>
+			<div class="col-md-12 tab-content">
+				<div role="tabpanel" class="tab-pane fade in active" id="seite1">
+					<article class="panel panel-default">
+						<header id="container-article" class="panel-heading">
+							<h1 class="text-center">{{singleInterview.articleName}}</h1>
+						</header>
+						<div class="panel-body">
+
+							<figure class="pull-left "><img class="img-responsive img-rounded" alt="{{singleInterview.fullName}}" src="{{singleInterview.personalPicture}}" width="200" height="200" />
+							</figure>
+							<p>{{singleInterview.fullDescription}}</p>
+							<hr/>
+							<p><strong>{{singleInterview.question[0]}}</strong></p>
+							<p>{{singleInterview.answer[0]}}</p>
+							<hr>
+							<img class="img-responsive img-rounded" src="{{singleInterview.pictures[1]}}" width="1170" height="600" />
+							<hr>
+							<p><strong>{{singleInterview.question[1]}}</strong></p>
+							<p>{{singleInterview.answer[1]}}</p>
+							<hr>
+							<img class="img-responsive img-rounded" src="{{singleInterview.pictures[2]}}" width="1170" height="600" />
+							<hr>
+							<p><strong>{{singleInterview.question[2]}}</strong></p>
+							<p>{{singleInterview.answer[2]}}</p>
+							<hr>
+							<img class="img-responsive img-rounded" src="{{singleInterview.pictures[3]}}" width="1170" height="600" />
+							<hr>
+							<p><strong>{{singleInterview.question[3]}}</strong></p>
+							<p>{{singleInterview.answer[3]}}</p>
+							<hr>
+							<img class="img-responsive img-rounded" src="{{singleInterview.pictures[4]}}" width="1170" height="600" />
+							<hr>
+							<p><strong>{{singleInterview.question[4]}}</strong></p>
+							<p>{{singleInterview.answer[4]}}</p>
+							<hr>
+							<img class="img-responsive img-rounded" src="{{singleInterview.pictures[5]}}" width="1170" height="600" />
+							<hr>
+						</div>
+					</article>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

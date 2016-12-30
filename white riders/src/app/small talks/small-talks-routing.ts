@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { SmallTalksComponent } from './small-talks.component';
 import { SmallTalksInterviewComponent } from './small-talks-interview.component';
+import { SingleInterviewComponent } from './single-interview.component';
 
 const routes: Routes = [
   {
@@ -10,7 +11,7 @@ const routes: Routes = [
     component: SmallTalksComponent,
     children: [
       { path: '', component: SmallTalksInterviewComponent },
-      // { path: ':id', component: SingleOfferComponent },
+      { path: ':id', component: SingleInterviewComponent },
     ]
   }
 ];
@@ -24,4 +25,5 @@ export class SmallTalksRouterModule { }
 export const routedComponents = [
   SmallTalksComponent,
   SmallTalksInterviewComponent,
+  SingleInterviewComponent
 ];

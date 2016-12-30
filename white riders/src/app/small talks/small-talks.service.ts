@@ -34,6 +34,11 @@ export class SmallTalksService {
       .map((response: Response) => response.json());
   }
 
+  getSingleInterview(id: string) {
+    return this.getSmallTalks()
+      .map(offers => offers.find(offer => offer._id === id));
+  }
+
   private checkForErrors(resp: Response) {
     if (resp.status >= 200 && resp.status < 300) {
       return resp;
