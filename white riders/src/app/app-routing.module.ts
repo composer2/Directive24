@@ -6,6 +6,8 @@ import { PageNotFoundComponent } from './page-not-found.component';
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home' },
   { path: 'events', loadChildren: 'app/events/events.module#EventsModule' },
+  { path: 'aboutUs', loadChildren: 'app/about us/about-us.module#AboutUsModule' },
+  { path: 'contactUs', loadChildren: 'app/contact us/contact-us.module#ContactUsModule' },
   { path: 'topOffers', loadChildren: 'app/top offers/top-offers.module#TopOffersModule' },
   { path: 'smallTalks', loadChildren: 'app/small talks/small-talks.module#SmallTalksModule' },
   { path: 'register', loadChildren: 'app/register/register.module#RegisterModule'},
