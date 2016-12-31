@@ -14,15 +14,62 @@ export class EventListComponent implements OnInit {
   events: Event[];
   values = '';
   admin: boolean;
-  editSingleEvent:boolean;
-  deleteSingleEvent:boolean;
+  editSingleEvent: boolean;
+  deleteSingleEvent: boolean;
+  addNewEvent: boolean;
+  newEventData: Event;
   // important after you have the event by id filter all events 
   // and find the event and push it to a single event array which later
   // is going to the server as PUT 
   editedEvent: Event;
-  deleteEditEventById: string;
+  deleteEditEventById: number;
   submitted = false;
+  newEventForm = false;
+  experiment: Event;
   constructor(private eventService: EventService) { }
+  // add new event
+  addEvent() {
+    this.addNewEvent = true;
+
+    this.newEventData = {
+      _id: '',
+      day: null,
+      month: '',
+      name: '',
+      picture: '',
+      shortDescription: '',
+      website: ''
+    };
+  }
+  cancelAddEvent() {
+    this.addNewEvent = false;
+  }
+  onSubmit2() { this.newEventForm = !this.newEventForm; };
+  submitNewEvent2() {
+    // submit the event to the array and to the server
+    let event = {
+      day: this.newEventData.day,
+      month: this.newEventData.month,
+      name: this.newEventData.name,
+      picture: this.newEventData.picture,
+      shortDescription: this.newEventData.shortDescription,
+      website: this.newEventData.website
+    };
+    this.eventService.addEvent(event)
+      .subscribe(addData => {
+        this.experiment = addData;
+        this.events.unshift(this.experiment);
+      });
+    this.newEventForm = !this.newEventForm;
+    this.addNewEvent = false;
+
+  }
+  cancelEditing2() {
+    this.newEventForm = !this.newEventForm;
+    this.addNewEvent = false;
+  }
+  // add new event
+
 
   onKey(event: any) {
     this.values = event.target.value;
@@ -31,35 +78,51 @@ export class EventListComponent implements OnInit {
   //  start edit event
   editEvent(event) {
     this.editSingleEvent = true;
-    console.log(event);
+    this.deleteEditEventById = event.target.parentNode.id;
+    this.editedEvent = JSON.parse(JSON.stringify(this.events[+this.deleteEditEventById]));
   }
   submitEditedEvent() {
-    // TODO send the event to the server : editedEvent
-    // hide the edit html
-    console.log(this.editedEvent);    
+    this.events[this.deleteEditEventById] = this.editedEvent;
+    let data = {
+      day: this.editedEvent.day,
+      month: this.editedEvent.month,
+      name: this.editedEvent.name,
+      picture: this.editedEvent.picture,
+      shortDescription: this.editedEvent.shortDescription,
+      website: this.editedEvent.website
+    };
+
+    this.eventService.updateEvent(this.editedEvent._id, data)
+      .subscribe(update => console.log(update));
+    this.submitted = !this.submitted;
     this.editSingleEvent = false;
+    this.deleteEditEventById = -1;
   }
   cancelEditing() {
     // hide the edit html
+    this.submitted = !this.submitted;
     this.editSingleEvent = false;
+    this.deleteEditEventById = -1;
   }
 
-  onSubmit() { this.submitted = !this.submitted; }
+  onSubmit() { this.submitted = !this.submitted; };
   // end edit event
 
   // start delete event
   deleteEvent(event) {
     this.deleteSingleEvent = true;
-    // TODO asign event id
-    this.deleteEditEventById = '';
-    console.log(event);
+    this.deleteEditEventById = event.target.parentNode.id;
+    this.editedEvent = JSON.parse(JSON.stringify(this.events[+this.deleteEditEventById]));
   }
   deleteEventConfirm() {
     // TODO delete the event by id from server DELETE 
-    // refresh the listed ones somehow
+    this.eventService.deleteEvent(this.editedEvent._id)
+      .subscribe(data => console.log(data));
 
     // deleting the deletion hides the confirmation box
+    this.events.splice(this.deleteEditEventById, 1);
     this.deleteSingleEvent = false;
+    this.deleteEditEventById = -1;
   }
   deleteEventCancel() {
     // cancel the deletion hides the confirmation box
@@ -74,7 +137,6 @@ export class EventListComponent implements OnInit {
       .subscribe(event => {
         this.events = event;
         this.admin = false;
-        this.editedEvent = this.events[0];
         this.editSingleEvent = false;
         this.deleteSingleEvent = false;
         if (localStorage['username'] === 'bob') {
