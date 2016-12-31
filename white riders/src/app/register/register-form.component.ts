@@ -22,7 +22,7 @@ export class RegisterFormComponent {
     register() {
         this.data = {
             username: this.model.username,
-            password: this.model.password
+            password: this.model.password,
         }
 
         this.userService.registerUser(this.data)

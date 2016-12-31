@@ -14,4 +14,8 @@ export class UserService {
     registerUser(data) {
         return this.api.register(data);
     }
+
+    loginUser(data) {
+        return this.api.login(data);
+    }
 }
