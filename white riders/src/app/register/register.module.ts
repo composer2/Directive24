@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { UserService } from './register.service';
 import { routedComponents, RegisterRoutingModule } from './register-routing.module';
@@ -9,6 +9,7 @@ import { routedComponents, RegisterRoutingModule } from './register-routing.modu
 @NgModule({
   imports: [CommonModule,
             FormsModule,
+            ReactiveFormsModule,
             RegisterRoutingModule,
             // LoginRoutingModule
   ],
