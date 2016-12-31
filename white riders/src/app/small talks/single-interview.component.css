@@ -22,5 +22,21 @@ header span.glyphicon{
   color: black;
 }
 #container-content-box{
-  margin-top:-95px;
+  margin-top:-95nopx;
 }
+#author-fullDescription:{
+    font-size: 20px;
+ 
+}
+#author-fullDescription::first-letter{
+    font-size: 130%;
+    color:black;
+    font-weight: 900;
+}
+#singleInterview-question{
+  font-size: 18px;
+}
+#singleInterview-answer{
+  font-size: 17px;
+}
+
