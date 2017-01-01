@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'contactUs', loadChildren: 'app/contact us/contact-us.module#ContactUsModule' },
   { path: 'topOffers', loadChildren: 'app/top offers/top-offers.module#TopOffersModule' },
   { path: 'smallTalks', loadChildren: 'app/small talks/small-talks.module#SmallTalksModule' },
+  {path: 'relaxZone', loadChildren: 'app/relax zone/relax-zone.module#RelaxZoneModule' },
   { path: 'register', loadChildren: 'app/register/register.module#RegisterModule'},
   { path: 'login', loadChildren: 'app/register/login.module#LoginModule'},
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent },
