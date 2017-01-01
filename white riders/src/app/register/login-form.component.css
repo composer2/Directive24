@@ -19,8 +19,11 @@
 /*}*/
 
 .login-form {
-    /*background:url('http://wallpaperscraft.com/image/london_ride_river_house_dock_9656_3840x2400.jpg?orig=3');*/
-    background-color: lightgrey;
+    background: url(../../assets/images/mountain.jpg);
+    background-size: cover;
+    /*background-color: rgba(255, 255, 255, 0.2);*/
+    /*background-color: lightgrey;*/
+    margin-top: -50px;
     padding-top: 10%;
     padding-bottom: 10%;
     /*margin-top: 30px;*/
@@ -29,9 +32,11 @@
 
 .login-form .col-md-4 {
     border: 5px solid white;
+    opacity: 0.7;
     /*background: #2c3e50;*/
     /*border-radius: 10px;*/
-    background: white;
+    background-color: rgba(255, 255, 255, 1);
+    /*background-color: transparent;*/
     padding-top: 50px;
     padding-bottom: 50px;
     box-shadow: 0px 5px 15px #000;
@@ -67,10 +72,11 @@ h2 {
     pointer-events: none;
 }
 
-.left-addon .glyphicon { left: 0px; }
+.right-addon .glyphicon { right: 0px; }
 
 .field {
     border: none;
+    opacity: 1;
     border-bottom: 2px solid blue;
     /*border-radius: 15px 45px 45px 15px;*/
     margin-bottom: 20px;
@@ -80,14 +86,13 @@ h2 {
 .loginReg-btn {
     padding-left: 10%;
     padding-right: 10%;
+    opacity: 1;
     white-space: normal;
-    background: white;
+    background: blue;
     border: 3px solid blue;
     border-radius: 0px;
-    position: relative;
     text-transform: uppercase;
-    font-size: 18px;
-    color: blue;
+    color: white;
     margin-left: 35%;
     margin-top: 10%;
 }
@@ -97,6 +102,9 @@ h2 {
     font-style: italic;
 }
 
+/*invalidUserAndPass-glyph {
+    background-color: red;
+}*/
 /*.btn {
     
 }

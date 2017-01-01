@@ -6,8 +6,8 @@
     <form [formGroup]="userToLogin" (ngSubmit)="login()" #loginForm="ngForm">
         <div class="form-group col-md-12">
             <label for="username">Username: </label>
-            <div class="inner-addon left-addon">
-                <span class="glyphicon glyphicon-user"></span>  
+            <div class="inner-addon right-addon">
+                <span class="glyphicon glyphicon-user" [ngClass]="{'invalidUserAndPass': !userToLogin.controls['username'].valid && userToLogin.controls['username'].touched}"></span>  
                 <input [formControl]="userToLogin.controls['username']" type="text" class="form-control field" name="username" [(ngModel)]="model.username"  required />
                 <div class="invalidUserAndPass" *ngIf="!userToLogin.controls['username'].valid && userToLogin.controls['username'].touched">
                    Please enter a valid username
@@ -16,8 +16,8 @@
         </div>
         <div class="form-group col-md-12">
             <label for="password">Password: </label>
-            <div class="inner-addon left-addon">
-                 <i class="glyphicon glyphicon-lock"></i> 
+            <div class="inner-addon right-addon">
+                 <i class="glyphicon glyphicon-lock" [ngClass]="{'invalidUserAndPass': !userToLogin.controls['password'].valid && userToLogin.controls['password'].touched}"></i> 
                 <input [formControl]="userToLogin.controls['password']" type="password" class="form-control field" name="password" [(ngModel)]="model.password" required />
                 <div class="invalidUserAndPass" *ngIf="!userToLogin.controls['password'].valid && userToLogin.controls['password'].touched">
                     Please enter a valid username
@@ -27,7 +27,7 @@
         <div class="form-group col-md-12">
             <button class="btn loginReg-btn" type="submit"
                 [disabled]="!loginForm.form.valid"
-                >Login</button>           
+                >Go</button>           
         </div>
     </form>
 </div>
