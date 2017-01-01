@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector:'login-root',
+    selector: 'login-root',
     template: `
     <router-outlet></router-outlet>
     `

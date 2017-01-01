@@ -8,7 +8,7 @@ import { UserService } from './register.service';
 
 @Component({
     selector: 'register-form',
-    templateUrl: 'register-form.component.html',
+    templateUrl: './register-form.component.html',
     styleUrls: ['form.component.css']
 })
 
@@ -20,19 +20,35 @@ export class RegisterFormComponent {
         password: ''
     };
     data: any = {};
-    public userToRegister: FormGroup;
+    // public userToRegister: FormGroup;
+
+    userToRegister: FormGroup = new FormGroup({
+        firstName: new FormControl(),
+        lastName: new FormControl(),
+        username: new FormControl(),
+        password: new FormControl()
+    });
 
     constructor(
         private router: Router,
         private userService: UserService,
-        fb: FormBuilder
-    ) { 
-        this.userToRegister = fb.group({
-            'firstName': ['', Validators.compose([Validators.required, Validators.minLength(5)])],
-            'lastName': ['', Validators.compose([Validators.required, Validators.minLength(5)])],
-            'username': ['', Validators.compose([Validators.required, Validators.minLength(5)])],
-            'password': ['', Validators.compose([Validators.required, Validators.minLength(4)])]
-        });
+        private fb: FormBuilder
+    ) {
+        // this.userToRegister = fb.group({
+        //     firstName: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
+        //     lastName: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
+        //     username: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
+        //     password: ['', Validators.compose([Validators.required, Validators.minLength(4)])]
+        // })
+    }
+
+    ngOnInit() {
+        this.userToRegister = this.fb.group({
+            firstName: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
+            lastName: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
+            username: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
+            password: ['', Validators.compose([Validators.required, Validators.minLength(4)])]
+        })
     }
 
     register() {
@@ -50,3 +66,10 @@ export class RegisterFormComponent {
             });
     }
 }
+
+// import { Component, OnInit } from '@angular/core';
+// import { FormGroup, FormBuilder, Validators} from '@angular/forms';
+
+// import { Api } from '../shared/kinvey-api.service';
+// import { User } from './user';
+// import { UserService } from './register.service';

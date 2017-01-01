@@ -7,10 +7,11 @@ import { routedComponents, RegisterRoutingModule } from './register-routing.modu
 // import { loginRoutedComponents, LoginRoutingModule} from './login-routing.module';
 
 @NgModule({
-  imports: [CommonModule,
-            FormsModule,
-            ReactiveFormsModule,
-            RegisterRoutingModule,
+  imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RegisterRoutingModule,
             // LoginRoutingModule
   ],
   declarations: [routedComponents,
