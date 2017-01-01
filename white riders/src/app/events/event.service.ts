@@ -3,7 +3,7 @@ import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 export class Event {
-  _id: string;
+  _id?: string;
   day: number;
   month: string;
   name: string;
@@ -18,6 +18,11 @@ export class EventService {
   private headersAllEvents: Headers = new Headers({
     'Authorization': 'Basic a2lkX1N5dE1yRXhCZzo3M2VlNGYzNTRkNjI0YzBiOGYwMTI3NmYxYjM5OWNkYQ=='
   });
+  private headersCreateUpdateDelete: Headers = new Headers({
+    'Content-Type': 'application/json',
+    'Authorization': 'Basic a2lkX1N5dE1yRXhCZzo3M2VlNGYzNTRkNjI0YzBiOGYwMTI3NmYxYjM5OWNkYQ=='
+
+  });
 
   constructor(private http: Http) { }
 
@@ -28,6 +33,32 @@ export class EventService {
       .map(this.checkForErrors)
       .catch(err => Observable.throw(err))
       .map((response: Response) => response.json());
+  }
+  addEvent(data): Observable<any> {
+    return this.http.post(
+      `https://baas.kinvey.com/appdata/kid_SytMrExBg/events`,
+      JSON.stringify(data),
+      { headers: this.headersCreateUpdateDelete })
+      .map(this.checkForErrors)
+      .catch(err => Observable.throw(err))
+      .map(response => response.json());
+  }
+  deleteEvent(id: string): Observable<any> {
+    return this.http.delete(
+      `https://baas.kinvey.com/appdata/kid_SytMrExBg/events/${id}`,
+      { headers: this.headersAllEvents })
+      .map(this.checkForErrors)
+      .catch(err => Observable.throw(err))
+      .map(response => response.json());
+  }
+  updateEvent(id: string, data): Observable<any> {
+    return this.http.put(
+      `https://baas.kinvey.com/appdata/kid_SytMrExBg/events/${id}`,
+      JSON.stringify(data),
+      { headers: this.headersCreateUpdateDelete })
+      .map(this.checkForErrors)
+      .catch(err => Observable.throw(err))
+      .map(response => response.json());
   }
 
   private checkForErrors(resp: Response) {

@@ -10,10 +10,176 @@
 					</span>
 				</div>
 			</div>
+			
+			<!--add new event-->
+			<div>
+				<button id="admin-buttons" class="btn btn-info btn-default btn-md glyphicon glyphicon-pencil" role="button" (click)="addEvent()"> Add New Event</button>
+			<!--start edit event-->
+		 
+			<div *ngIf="addNewEvent" class="modal in" style="display: block;" id="dialog-confirm-box2">
+			<div class="modal-dialog">
+				<div class="modal-content">
+				  <div class="container">
+					 <div class="row">
+						<div class="col-md-8">
+					
+				        <!--selected event-->
+						<div [hidden]="newEventForm">
+							<h1>Edit Form</h1>
+							<form (ngSubmit)="onSubmit2()" #addNewEvent="ngForm">
+								<div class="form-group">
+									<div id="form-inputs">
+										<label for="name">Event Heading</label>
+										<input  type="text" class="form-control" id="name" 
+										required 
+										[(ngModel)]="newEventData.name" name="name" 
+										#name="ngModel">
+										<div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+											Heading is is required
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div id="form-inputs">
+										<label for="shortDescription">Event Short Description</label>
+										<textarea rows="4" cols="50"
+										type="text" class="form-control" id="shortDescription" 
+										required 
+										[(ngModel)]="newEventData.shortDescription" name="shortDescription" 
+										#shortDescription="ngModel"></textarea>
+										<div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+											Short description is is required
+										</div>
+									</div>
+								</div>
+								
+							<form class="form-inline">	
+							   <div class="form-group">
+								 <div id="form-inputs">
+      							  <label for="month">Month</label>
+      							  <select class="form-control" id="month"
+      							          required
+      							          [(ngModel)]="newEventData.month" name="month"
+      							          #month="ngModel" >
+      							    <option>JAN</option><option>Feb</option><option>Mar</option><option>APR</option><option>MAY</option><option>JUN</option><option>JUL</option><option>AUG</option><option>SEP</option><option>OCT</option><option>NOV</option><option>DEC</option>
+      							  </select>
+								  <div [hidden]="month.valid || month.pristine" class="alert alert-danger">
+      							    Month is required
+      							  </div>
+								 </div>
+							   </div> 
+								
+							   <div class="form-group">
+								 <div id="form-inputs">											
+      							  <label for="day">Day</label>
+      							  <select class="form-control" id="day"
+      							          required
+      							          [(ngModel)]="newEventData.day" name="day"
+      							          #day="ngModel" >
+      								    <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option><option>21</option><option>22</option><option>23</option><option>24</option><option>25</option><option>26</option><option>27</option><option>28</option><option>29</option><option>30</option><option>31</option>
+      							  </select>
+      							  <div [hidden]="day.valid || day.pristine" class="alert alert-danger">
+      							    Day is required
+      							  </div>
+      							</div>
+								</div>  
+								</form>
+
+				           <div class="form-group">
+								   <div id="form-inputs"> 
+      							  <label for="picture">Picture address</label>
+      							  <input type="text" class="form-control" id="picture"
+      							         required
+      							         [(ngModel)]="newEventData.picture" name="picture"
+      							         #picture="ngModel" >
+      							  <div [hidden]="picture.valid || picture.pristine" class="alert alert-danger">
+      							    Picture is required
+      							  </div>
+      							</div>
+      						</div>
+
+							 <div class="form-group">
+								  <div id="form-inputs">
+      							  <label for="website">Website address</label>
+      							  <input type="text" class="form-control" id="website"
+      							         required
+      							         [(ngModel)]="newEventData.website" name="website"
+      							         #website="ngModel" >
+      							  <div [hidden]="website.valid || website.pristine" class="alert alert-danger">
+      							    website is required
+      							  </div>
+      							</div>
+      						  </div>
+
+								<br>
+								<button  type="submit" class="btn btn-success btn-md" [disabled]="!addNewEvent.form.valid">Submit preview</button>
+								<button type="button" class="btn btn-default" (click)="addNewEvent.reset()">Reset</button>
+							</form>
+								<br>
+								<button type="button" class="btn btn-danger btn-md" (click)="cancelAddEvent()">Cancel</button>	
+							<br>
+						</div>
+				        <!--selected event-->
+					
+				        <!--submit preview-->
+					    <div [hidden]="!newEventForm" class="[ col-xs-12 col-sm-8 col-md-8]">
+					    	<h2>You will submit the following:</h2>
+							<hr>
+
+							<!--submit event-->
+
+							<ul class="event-list">
+								<li>
+									<time>
+										<span class="day">{{newEventData.day}}</span>
+										<span class="month">{{newEventData.month}}</span>
+									</time>
+									<img src="{{newEventData.picture}}"/>
+									<div class="info">
+										<h2 class="title"><a href="{{newEventData.website}}"> {{newEventData.name}}</a></h2>
+										<p class="desc">{{newEventData.shortDescription}}</p>
+										<ul>
+											<li style="width:50%;"><a href="{{newEventData.website}}"><span class="fa fa-globe"></span> Website</a></li>
+										</ul>
+									</div>
+									<div class="social">
+										<ul>
+											<li class="facebook" style="width:33%;"><a href=""><span class="fa fa-facebook"></span></a></li>
+											<li class="twitter" style="width:34%;"><a href=""><span class="fa fa-twitter"></span></a></li>
+											<li class="google-plus" style="width:33%;"><a href=""><span class="fa fa-google-plus"></span></a></li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+
+							<!--submit event-->
+
+							<hr>
+							<div>
+					    	<button class="btn btn-success" (click)="submitNewEvent2()">Submit</button>
+					    	<button class="btn btn-default" (click)="onSubmit2()">Edit More</button>
+					    	<button class="btn btn-danger" (click)="cancelEditing2()">Cancel</button>
+							</div>		
+							<br>
+					    </div>
+						<br>
+				        <!--submit preview-->
+						
+					   </div>
+					  </div>
+					 </div>
+				   </div>
+				</div>
+			</div>
+				<!--end edit event-->
+			</div>
+			<!--add new event-->
+
+
 			<br>
 			<!--single event start-->
 			<ul class="event-list">
-				<li *ngFor="let event of (events | searchFilter:values)">
+				<li *ngFor="let event of (events | searchFilter:values); let i=index">
 					<time>
 						<span class="day">{{event.day}}</span>
 						<span class="month">{{event.month}}</span>
@@ -33,9 +199,9 @@
 							<li class="google-plus" style="width:33%;"><a href=""><span class="fa fa-google-plus"></span></a></li>
 						</ul>
 					</div>
-					<div *ngIf="admin" id="{{event._id}}">
-							<button id="admin-buttons" class="btn btn-info btn-default btn-md" role="button" (click)="editEvent($event)"><span class="glyphicon glyphicon-edit">Edit</span></button>
-							<button id="admin-buttons" class="btn btn-info btn-danger btn-md" role="button" (click)="deleteEvent($event)"><span class="glyphicon glyphicon glyphicon-remove">Delete</span></button>
+					<div *ngIf="admin" id="{{i}}">
+							<button id="admin-buttons" class="btn btn-info btn-default btn-md glyphicon glyphicon-edit" role="button" (click)="editEvent($event)"> Edit</button>
+							<button id="admin-buttons" class="btn btn-info btn-danger btn-md glyphicon glyphicon glyphicon-remove" role="button" (click)="deleteEvent($event)"> Delete</button>
 					</div>
 				</li>
 				
@@ -67,7 +233,7 @@
 				<div class="modal-content">
 				  <div class="container">
 					 <div class="row">
-						<div class="col-sm-8 ]">
+						<div class="col-md-8">
 					
 				        <!--selected event-->
 						<div [hidden]="submitted">
@@ -158,16 +324,17 @@
       						  </div>
 
 								<br>
-								<button type="submit" class="btn btn-default btn-md" [disabled]="!eventForm.form.valid">Submit preview</button>
-								<button class="btn btn-danger btn-md" (click)="cancelEditing()">Cancel</button>
-								<br>
+								<button  type="submit" class="btn btn-success btn-md" [disabled]="!eventForm.form.valid">Submit preview</button>
+								<button type="button" class="btn btn-default" (click)="eventForm.reset()">Reset</button>
 							</form>
+								<br>
+								<button type="button" class="btn btn-danger btn-md" (click)="cancelEditing()">Cancel</button>	
 							<br>
 						</div>
 				        <!--selected event-->
 					
 				        <!--submit preview-->
-					    <div [hidden]="!submitted">
+					    <div [hidden]="!submitted" class="[ col-xs-12 col-sm-8 col-md-8]">
 					    	<h2>You will submit the following:</h2>
 							<hr>
 
@@ -199,10 +366,12 @@
 
 							<!--submit event-->
 
-							<hr>		
+							<hr>
+							<div>
 					    	<button class="btn btn-success" (click)="submitEditedEvent()">Submit</button>
 					    	<button class="btn btn-default" (click)="onSubmit()">Edit More</button>
 					    	<button class="btn btn-danger" (click)="cancelEditing()">Cancel</button>
+							</div>		
 							<br>
 					    </div>
 						<br>

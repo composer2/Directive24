@@ -1,0 +1,23 @@
+
+html {
+  font-family: 'Open Sans', sans-serif;
+}
+
+#main-text {
+    font-size: 14px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+h3 {
+    padding: 20px;
+}
+
+#underline-bottom{
+	border-bottom: 1px solid dodgerblue;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#quot{
+	font-style: oblique;
+}

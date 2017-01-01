@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HomeModule } from './home/home.module';
 import { AppRoutingModule, routableComponents } from './app-routing.module';
 import { TopOffersService } from './shared/top-offers.service';
+import { SubscribeService } from './shared/subscribe.service';
 
 import { Api } from './shared/kinvey-api.service';
 import { CredentialsService } from './shared/credentials.service';
@@ -27,6 +28,7 @@ import { CredentialsService } from './shared/credentials.service';
 
     providers: [
         TopOffersService,
+        SubscribeService,
         Api,
         CredentialsService
     ],

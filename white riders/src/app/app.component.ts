@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
+
+import { SubscribeService } from './shared/subscribe.service';
 import { CredentialsService } from './shared/credentials.service';
 
 @Component({
@@ -109,7 +112,8 @@ export class AppComponent implements OnInit {
     isUserLoggedIn = false;
 
     constructor(
-        private credentialsService: CredentialsService
+        private credentialsService: CredentialsService,
+        private subscribeService: SubscribeService
     ) {
         this.credentialsService.changeLoggedInStatus =
             () =>
@@ -124,5 +128,16 @@ export class AppComponent implements OnInit {
 
     logout() {
         this.credentialsService.clearUser();
+    }
+    subscribe(event) {
+        let inputValue = event.target.previousElementSibling.value;
+        let email = {
+            email: inputValue
+        };
+        this.subscribeService.subscribeForNews(email)
+            .subscribe(data => {
+                console.log(data);
+                event.target.previousElementSibling.value = '';
+            });
     }
 }

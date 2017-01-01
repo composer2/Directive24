@@ -6,7 +6,6 @@ import { EventService } from './event.service';
 import { routedComponents, EventsRoutingModule } from './events-routing.module';
 import { SearchFilter } from './events-search-filter.pipe';
 
-
 @NgModule({
   imports: [CommonModule, FormsModule, EventsRoutingModule],
   declarations: [routedComponents, SearchFilter],
