@@ -8,7 +8,8 @@ import { UserService } from './register.service';
 
 @Component({
     selector: 'register-form',
-    templateUrl: 'register-form.component.html'
+    templateUrl: 'register-form.component.html',
+    styleUrls: ['form.component.css']
 })
 
 export class RegisterFormComponent {

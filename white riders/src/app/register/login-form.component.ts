@@ -10,7 +10,7 @@ import { UserService } from './register.service';
 @Component({
     selector: 'login-form',
     templateUrl: 'login-form.component.html',
-    styleUrls: ['login-form.component.css']
+    styleUrls: ['form.component.css']
 //     animations: [
 //         trigger('loginBtnState', [
 //             state('inactive', style({
