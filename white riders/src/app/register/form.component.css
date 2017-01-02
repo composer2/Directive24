@@ -1,6 +1,6 @@
 .form {
-    background: url(../../assets/images/mountain.jpg);
-    /*background: url('https://s-media-cache-ak0.pinimg.com/originals/64/39/38/643938987b1b9cb5471de15a55678764.jpg');*/
+    /*background: url(../../assets/images/mountain.jpg);*/
+    background: url('https://s-media-cache-ak0.pinimg.com/originals/64/39/38/643938987b1b9cb5471de15a55678764.jpg');
     background-size: cover;
     /*background-color: rgba(255, 255, 255, 0.2);*/
     /*background-color: lightgrey;*/
@@ -91,6 +91,7 @@ h2 {
 .regBtn {
     text-transform: uppercase;
     margin-left: 30%;
+    opacity: 1;
     color: blue;
     background-color: white;
     border: 3px solid blue;
