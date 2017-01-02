@@ -2,9 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { RegisterFormComponent } from './register-form.component';
-// import { LoginFormComponent } from './login-form.component';
 import { RegisterComponent } from './register.component';
-// import { LoginComponent } from './login.component';
 
 const routes: Routes = [
   {
@@ -27,6 +25,4 @@ export class RegisterRoutingModule { }
 export const routedComponents = [
   RegisterComponent,
   RegisterFormComponent,
-  // LoginFormComponent,
-  // LoginComponent
 ];

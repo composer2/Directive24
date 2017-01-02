@@ -15,10 +15,14 @@ import { UserService } from './register.service';
     animations: [
         trigger('loginBtnState', [
             state('inactive', style({
-                transform: 'scale(1)'
+                transform: 'scale(1)',
+                backgroundColor: 'white',
+                color: 'blue'
             })),
             state('active', style({
-                transform: 'scale(1.4)'
+                transform: 'scale(1.4)',
+                backgroundColor: 'blue',
+                color: 'white'
             })),
             transition('inactive <=> active', animate('200ms ease-in')),
         ]),
@@ -48,8 +52,8 @@ import { UserService } from './register.service';
                 borderColor: 'blue',
                 borderWidth: '4px'
             })),
-            transition('fadeInPass <=> fadeOutPass', animate('300ms ease-in')),
-            
+            transition('fadeInPass <=> fadeOutPass', animate('200ms ease-in')),
+
             // transition('fadeInPass <=> fadeOutPass', [
             //     animate('300ms', keyframes([
             //         style({opaciti: 0, transform: 'translateX(0px)', offset: 0}),
@@ -111,11 +115,11 @@ export class LoginFormComponent implements OnInit{
 
         this.userService.loginUser(this.data)
             .subscribe(data => {
-                this._service.success('Success!', 'Logged in!');
-                setTimeout(() => this.router.navigate(['./home']), 3000);
+                this._service.success('Success!', 'Registred!');
+                setTimeout(() => this.router.navigate(['./home']), 2000);
             },
             (err: any) => {
-                this._service.error('', 'Invalid username or password!')
+                this._service.error('Error!', 'Invalid username or password!')
             });
     }
 }

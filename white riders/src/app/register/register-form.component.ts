@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Input, trigger, state, style, transition, animate, keyframes } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-// import {ToasterModule, ToasterService} from 'angular2-toaster';
-// import {ToasterContainerComponent, ToasterService} from 'angular2-toaster';
 import { NotificationsService } from 'angular2-notifications';
 
 import { Api } from '../shared/kinvey-api.service';
@@ -12,7 +11,66 @@ import { UserService } from './register.service';
 @Component({
     selector: 'register-form',
     templateUrl: 'register-form.component.html',
-    styleUrls: ['form.component.css']
+    styleUrls: ['form.component.css'],
+    animations: [
+        trigger('RegBtnState', [
+            state('inactive', style({
+                transform: 'scale(1)',
+                backgroundColor: 'white',
+                color: 'blue'
+            })),
+            state('active', style({
+                transform: 'scale(1.4)',
+                backgroundColor: 'blue',
+                color: 'white'
+            })),
+            transition('inactive <=> active', animate('200ms ease-in')),
+        ]),
+        trigger('inputStateFirstName', [
+            state('focusOutFirstName', style({
+                borderColor: 'lightgray'
+            })),
+            state('focusInFirstName', style({
+                borderColor: 'blue',
+                borderWidth: '4px'
+            })),
+            transition('focusOutFirstName <=> focusInFirstName', animate('200ms ease-in')),
+
+        ]),
+        trigger('inputStateLastName', [
+            state('focusOutLastName', style({
+                borderColor: 'lightgray'
+            })),
+            state('focusInLastName', style({
+                borderColor: 'blue',
+                borderWidth: '4px'
+            })),
+            transition('focusOutLastName <=> focusInName', animate('200ms ease-in')),
+
+        ]),
+        trigger('inputStateUser', [
+            state('focusOutUser', style({
+                borderColor: 'lightgray'
+            })),
+            state('focusInUser', style({
+                borderColor: 'blue',
+                borderWidth: '4px'
+            })),
+            transition('focusOutUser <=> focusInUser', animate('200ms ease-in')),
+
+        ]),
+        trigger('inputStatePass', [
+            state('focusOutPass', style({
+                borderColor: 'lightgray'
+            })),
+            state('focusInPass', style({
+                borderColor: 'blue',
+                borderWidth: '4px'
+            })),
+            transition('focusOutPass <=> focusInPass', animate('200ms ease-in')),
+
+        ])
+    ]
 })
 
 export class RegisterFormComponent {
@@ -24,7 +82,11 @@ export class RegisterFormComponent {
     };
     data: any = {};
     options: Object;
-    // public userToRegister: FormGroup;
+    state: string = 'inactive';
+    inputStateFirstName: string = 'focusOutFirstName';
+    inputStateLastName: string = 'focusOutLastName';
+    inputStateUser: string = 'focusOutUser';
+    inputStatePass: string = 'focusOutPass';
 
     userToRegister: FormGroup = new FormGroup({
         firstName: new FormControl(),
@@ -32,8 +94,6 @@ export class RegisterFormComponent {
         username: new FormControl(),
         password: new FormControl()
     });
-
-    // options: Object;
 
     constructor(
         private router: Router,
@@ -43,12 +103,6 @@ export class RegisterFormComponent {
     ) {
         this.options = { timeOut: 3000, pauseOnHover: true, showProgressBar: false, animate: 'scale', position: ['right', 'top'] };
 
-        // this.userToRegister = fb.group({
-        //     firstName: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
-        //     lastName: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
-        //     username: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
-        //     password: ['', Validators.compose([Validators.required, Validators.minLength(4)])]
-        // })
     }
 
     ngOnInit() {
@@ -59,9 +113,28 @@ export class RegisterFormComponent {
             password: ['', Validators.compose([Validators.required, Validators.minLength(4)])]
         });
 
-        // this.options = { timeOut: 2500, pauseOnHover: true, showProgressBar: false, animate: 'scale', position: ['right', 'top'] };
-
     }
+
+    toggleState() {
+        this.state = (this.state === 'inactive' ? 'active' : 'inactive');
+    }
+
+    inputToggleStateFisrtName() {
+        this.inputStateFirstName = (this.inputStateFirstName === 'focusOutFirstName' ? 'focusInFirstName' : 'focusOutFirstName');
+    }
+
+    inputToggleStateLastName() {
+        this.inputStateLastName = (this.inputStateLastName === 'focusOutLastName' ? 'focusInLastName' : 'focusOutLastName');
+    }
+
+    inputToggleStateUser() {
+        this.inputStateUser = (this.inputStateUser === 'focusOutUser' ? 'focusInUser' : 'focusOutUser');
+    }
+
+    inputToggleStatePass() {
+        this.inputStatePass = (this.inputStatePass === 'focusOutPass' ? 'focusInPass' : 'focusOutPass');
+    }
+
 
     register() {
         this.data = {
@@ -74,11 +147,11 @@ export class RegisterFormComponent {
         this.userService.registerUser(this.data)
             .subscribe(data => {
                 this._service.success('Success!', 'Logged in!');
-                setTimeout(() => this.router.navigate(['./home']), 3000);
+                setTimeout(() => this.router.navigate(['./home']), 2000);
                 console.log(data);
             },
             (err: any) => {
-                this._service.error('', 'Invalid username or password!')
+                this._service.error('Error!', 'Invalid username or password!')
             });
     }
 }
