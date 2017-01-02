@@ -6,8 +6,8 @@ import { pageTransition } from '../shared/routing-animations';
 
 @Component({
     selector: 'single-interview',
-    templateUrl: 'single-interview.component.html',
-    styleUrls: ['single-interview.component.css'],
+    templateUrl: './single-interview.component.html',
+    styleUrls: ['./single-interview.component.css'],
     animations: [pageTransition]
 })
 

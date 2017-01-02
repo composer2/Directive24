@@ -11,8 +11,8 @@ import { Event, EventService } from './event.service';
 
 @Component({
   selector: 'events-list',
-  templateUrl: 'events-list.component.html',
-  styleUrls: ['events-list.component.css'],
+  templateUrl: './events-list.component.html',
+  styleUrls: ['./events-list.component.css'],
   changeDetection: ChangeDetectionStrategy.Default,
   animations: [pageTransition, searchBarAnimation, noteAnimation]
 

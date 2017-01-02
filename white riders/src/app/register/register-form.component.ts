@@ -12,8 +12,8 @@ import { pageTransition } from '../shared/routing-animations';
 
 @Component({
     selector: 'register-form',
-    templateUrl: 'register-form.component.html',
-    styleUrls: ['form.component.css'],
+    templateUrl: './register-form.component.html',
+    styleUrls: ['./form.component.css'],
     animations: [
         trigger('RegBtnState', [
             state('inactive', style({

@@ -6,8 +6,8 @@ import { SubscribeService } from './shared/subscribe.service';
 import { CredentialsService } from './shared/credentials.service';
 
 @Component({
-    selector: 'start-app',
-    templateUrl: 'app.component.html',
+    selector: 'app-root',
+    templateUrl: './app.component.html',
     styles: [`
     nav ul {list-style-type: none;}
     nav ul li {padding: 4px;cursor: pointer;display:inline-block}

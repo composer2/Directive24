@@ -5,8 +5,8 @@ import { pageTransition } from '../shared/routing-animations';
 
 @Component({
   selector: 'relax-zone-details',
-  templateUrl: 'relax-zone-details.component.html',
-  styleUrls: ['relax-zone-details.component.css'],
+  templateUrl: './relax-zone-details.component.html',
+  styleUrls: ['./relax-zone-details.component.css'],
   animations: [pageTransition]
 
 })

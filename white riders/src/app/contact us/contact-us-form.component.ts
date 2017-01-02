@@ -6,7 +6,7 @@ import { pageTransition } from '../shared/routing-animations';
 
 @Component({
   selector: 'contact-us-form',
-  templateUrl: 'contact-us-form.component.html',
+  templateUrl: './contact-us-form.component.html',
   animations: [pageTransition]
 
 

@@ -8,7 +8,7 @@ import { pageTransition } from '../shared/routing-animations';
 
 @Component({
   selector: 'all-offers',
-  templateUrl: 'all-offers.component.html',
+  templateUrl: './all-offers.component.html',
   styles: [`
     .offers {list-style-type: none;}
     *.offers li {padding: 4px;cursor: pointer;}

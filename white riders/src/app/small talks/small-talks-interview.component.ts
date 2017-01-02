@@ -8,8 +8,8 @@ import { pageTransition } from '../shared/routing-animations';
 
 @Component({
   selector: 'small-talks-interview',
-  templateUrl: 'small-talks-interview.component.html',
-  styleUrls: ['small-talks-interview.component.css'],
+  templateUrl: './small-talks-interview.component.html',
+  styleUrls: ['./small-talks-interview.component.css'],
   animations: [pageTransition]
 })
 export class SmallTalksInterviewComponent {

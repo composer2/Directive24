@@ -13,8 +13,8 @@ import { pageTransition } from '../shared/routing-animations';
 
 @Component({
     selector: 'login-form',
-    templateUrl: 'login-form.component.html',
-    styleUrls: ['form.component.css'],
+    templateUrl: './login-form.component.html',
+    styleUrls: ['./form.component.css'],
     animations: [pageTransition,
         trigger('loginBtnState', [
             state('inactive', style({

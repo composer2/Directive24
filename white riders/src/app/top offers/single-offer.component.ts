@@ -8,7 +8,7 @@ import { pageTransition } from '../shared/routing-animations';
 
 @Component({
     selector: 'single-offer',
-    templateUrl: 'single-offer.component.html',
+    templateUrl: './single-offer.component.html',
     styles: [`
   .hide-bullets {
     list-style:none;
