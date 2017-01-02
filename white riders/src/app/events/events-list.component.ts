@@ -1,5 +1,11 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component, OnInit, ChangeDetectionStrategy
+} from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+
+import { searchBarAnimation } from './searchBar-animation';
+import { pageTransition } from '../shared/routing-animations';
+import { noteAnimation } from './note-animation';
 
 import { Event, EventService } from './event.service';
 
@@ -7,10 +13,14 @@ import { Event, EventService } from './event.service';
   selector: 'events-list',
   templateUrl: 'events-list.component.html',
   styleUrls: ['events-list.component.css'],
-  changeDetection: ChangeDetectionStrategy.Default
+  changeDetection: ChangeDetectionStrategy.Default,
+  animations: [pageTransition, searchBarAnimation, noteAnimation]
+
 
 })
 export class EventListComponent implements OnInit {
+  pageOnLoad: string = 'in';
+  focusSearchState: string = 'inactive';
   events: Event[];
   values = '';
   admin: boolean;
@@ -27,6 +37,11 @@ export class EventListComponent implements OnInit {
   newEventForm = false;
   experiment: Event;
   constructor(private eventService: EventService) { }
+  // search animation
+  changeFocusSearchState() {
+    this.focusSearchState = (this.focusSearchState === 'inactive' ? 'active' : 'inactive');
+  }
+  // search animation
   // add new event
   addEvent() {
     this.addNewEvent = true;
@@ -132,6 +147,7 @@ export class EventListComponent implements OnInit {
 
 
   ngOnInit() {
+    this.pageOnLoad = (this.pageOnLoad === 'in' ? 'out' : 'in');
     this.events = [];
     this.eventService.getEvents()
       .subscribe(event => {

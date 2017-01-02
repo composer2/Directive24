@@ -7,11 +7,14 @@ import { NotificationsService } from 'angular2-notifications';
 import { Api } from '../shared/kinvey-api.service';
 import { User } from './user';
 import { UserService } from './register.service';
+import { pageTransition } from '../shared/routing-animations';
+
 
 @Component({
     selector: 'register-form',
     templateUrl: 'register-form.component.html',
     styleUrls: ['form.component.css'],
+<<<<<<< HEAD
     animations: [
         trigger('RegBtnState', [
             state('inactive', style({
@@ -71,9 +74,14 @@ import { UserService } from './register.service';
 
         ])
     ]
+=======
+    animations: [pageTransition]
+
+>>>>>>> 43b2dc0bbe17805cb3045055be8da233b28edb95
 })
 
 export class RegisterFormComponent {
+    pageOnLoad: string = 'in';
     model: any = {
         firstName: '',
         lastName: '',
@@ -106,6 +114,7 @@ export class RegisterFormComponent {
     }
 
     ngOnInit() {
+        this.pageOnLoad = (this.pageOnLoad === 'in' ? 'out' : 'in');
         this.userToRegister = this.fb.group({
             firstName: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
             lastName: ['', Validators.compose([Validators.required, Validators.minLength(5)])],

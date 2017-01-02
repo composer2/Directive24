@@ -1,15 +1,16 @@
-<div class="container">
+<div class="container" [@transition]='pageOnLoad'>
 	<div class="row">
 		<div class="[ col-xs-12 col-sm-offset-2 col-sm-8 ]">
 			<h2>Events</h2>
-			<div id="custom-search-input">
-				<div class="input-group col-md-12">
-					<input type="text" class="  search-query form-control" placeholder="Search" (keyup)="onKey($event)" />
-					<span class="input-group-btn">
-            		<button class="btn btn-primary" type="button"><span class=" glyphicon glyphicon-search"></span></button>
-					</span>
+					<!--animation ot the search -->
+			<div id="custom-search-input" [@focusSearchPanel]="focusSearchState" class="col-md-12 col-sm-12 col-xs-12">
+				<div class="input-group">
+					<input  (focus)="changeFocusSearchState()" (focusout)="changeFocusSearchState()" type="text" class="  search-query form-control" placeholder="Search" (keyup)="onKey($event)" />
+					<span class="input-group-btn"><button class="btn btn-primary" type="button"><span class=" glyphicon glyphicon-search"></span></button></span>
 				</div>
+				<p id="searchTextAnimation" [@note]="focusSearchState"><em>Searh events by name</em></p>
 			</div>
+					<!--animation ot the search -->
 			
 			<!--add new event-->
 			<div>

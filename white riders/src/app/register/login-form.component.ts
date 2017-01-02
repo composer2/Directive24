@@ -8,11 +8,14 @@ import { Api } from '../shared/kinvey-api.service';
 import { User } from './user';
 import { UserService } from './register.service';
 
+import { pageTransition } from '../shared/routing-animations';
+
+
 @Component({
     selector: 'login-form',
     templateUrl: 'login-form.component.html',
     styleUrls: ['form.component.css'],
-    animations: [
+    animations: [pageTransition,
         trigger('loginBtnState', [
             state('inactive', style({
                 transform: 'scale(1)',
@@ -52,7 +55,11 @@ import { UserService } from './register.service';
                 borderColor: 'blue',
                 borderWidth: '4px'
             })),
+<<<<<<< HEAD
             transition('fadeInPass <=> fadeOutPass', animate('200ms ease-in')),
+=======
+            transition('fadeInPass <=> fadeOutPass', animate('300ms ease-in')),
+>>>>>>> 43b2dc0bbe17805cb3045055be8da233b28edb95
 
             // transition('fadeInPass <=> fadeOutPass', [
             //     animate('300ms', keyframes([
@@ -65,7 +72,9 @@ import { UserService } from './register.service';
     ]
 
 })
-export class LoginFormComponent implements OnInit{
+export class LoginFormComponent implements OnInit {
+    pageOnLoad: string = 'in';
+
     model: any = {
         username: '',
         password: ''
@@ -93,6 +102,7 @@ export class LoginFormComponent implements OnInit{
     }
 
     ngOnInit() {
+    this.pageOnLoad = (this.pageOnLoad === 'in' ? 'out' : 'in');
     }
 
     toggleState() {
