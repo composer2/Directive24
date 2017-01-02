@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { TopOffers } from '../shared/top-offers';
 import { TopOffersService } from '../shared/top-offers.service';
+import { pageTransition } from '../shared/routing-animations';
 
 
 @Component({
@@ -137,9 +138,11 @@ font-size:20px;
     height:200px;
 }
 }
-`]
+`],
+  animations: [pageTransition]
 })
 export class SingleOfferComponent implements OnInit {
+    pageOnLoad: string = 'in';
     @Input() singleOffer: TopOffers;
     allpictures;
     imgSrc;
@@ -154,6 +157,8 @@ export class SingleOfferComponent implements OnInit {
         private topOffersService: TopOffersService) { }
 
     ngOnInit() {
+    this.pageOnLoad = (this.pageOnLoad === 'in' ? 'out' : 'in');
+
         if (!this.singleOffer) {
             this.route
                 .params

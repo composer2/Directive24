@@ -3,6 +3,8 @@ import { Observable } from 'rxjs/Observable';
 
 import { TopOffers } from '../shared/top-offers';
 import { TopOffersService } from '../shared/top-offers.service';
+import { pageTransition } from '../shared/routing-animations';
+
 
 @Component({
   selector: 'all-offers',
@@ -29,9 +31,11 @@ import { TopOffersService } from '../shared/top-offers.service';
       font-size:10px;
     }
   `],
+  animations: [pageTransition],
   changeDetection: ChangeDetectionStrategy.Default
 })
 export class AllOffersComponent implements OnInit {
+  pageOnLoad: string = 'in';
   allOffers: TopOffers[];
   filterName: string = '-stars';
   constructor(private topOffersService: TopOffersService) { }
@@ -65,6 +69,7 @@ export class AllOffersComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.pageOnLoad = (this.pageOnLoad === 'in' ? 'out' : 'in');
     this.allOffers = [];
     this.topOffersService.getAllOffers()
       .subscribe(offers => this.allOffers = offers);

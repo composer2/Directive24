@@ -2,15 +2,17 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Interview, SmallTalksService } from './small-talks.service';
-
+import { pageTransition } from '../shared/routing-animations';
 
 @Component({
     selector: 'single-interview',
     templateUrl: 'single-interview.component.html',
-    styleUrls: ['single-interview.component.css']
+    styleUrls: ['single-interview.component.css'],
+    animations: [pageTransition]
 })
 
 export class SingleInterviewComponent implements OnInit {
+    pageOnLoad: string = 'in';
     @Input() singleInterview: Interview;
 
     private id: any;
@@ -21,6 +23,8 @@ export class SingleInterviewComponent implements OnInit {
         private smallTalksService: SmallTalksService) { }
 
     ngOnInit() {
+    this.pageOnLoad = (this.pageOnLoad === 'in' ? 'out' : 'in');
+
         if (!this.singleInterview) {
             this.route
                 .params
