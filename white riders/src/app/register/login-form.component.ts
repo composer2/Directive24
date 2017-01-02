@@ -31,6 +31,7 @@ import { UserService } from './register.service';
                 borderWidth: '4px'
             })),
             transition('fadeInUser <=> fadeOutUser', animate('200ms ease-in')),
+
             // transition('fadeInUser <=> fadeOutUser', [
             //     animate('300ms', keyframes([
             //         style({opaciti: 0, transform: 'translateX(-10px)', offset: 0}),
@@ -48,6 +49,7 @@ import { UserService } from './register.service';
                 borderWidth: '4px'
             })),
             transition('fadeInPass <=> fadeOutPass', animate('300ms ease-in')),
+            
             // transition('fadeInPass <=> fadeOutPass', [
             //     animate('300ms', keyframes([
             //         style({opaciti: 0, transform: 'translateX(0px)', offset: 0}),
