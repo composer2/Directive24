@@ -14,7 +14,6 @@ import { pageTransition } from '../shared/routing-animations';
     selector: 'register-form',
     templateUrl: 'register-form.component.html',
     styleUrls: ['form.component.css'],
-<<<<<<< HEAD
     animations: [
         trigger('RegBtnState', [
             state('inactive', style({
@@ -72,12 +71,12 @@ import { pageTransition } from '../shared/routing-animations';
             })),
             transition('focusOutPass <=> focusInPass', animate('200ms ease-in')),
 
-        ])
-    ]
-=======
-    animations: [pageTransition]
+        ]),
 
->>>>>>> 43b2dc0bbe17805cb3045055be8da233b28edb95
+        pageTransition
+    ],
+    
+    // animations: [pageTransition]
 })
 
 export class RegisterFormComponent {

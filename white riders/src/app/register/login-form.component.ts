@@ -55,12 +55,8 @@ import { pageTransition } from '../shared/routing-animations';
                 borderColor: 'blue',
                 borderWidth: '4px'
             })),
-<<<<<<< HEAD
             transition('fadeInPass <=> fadeOutPass', animate('200ms ease-in')),
-=======
-            transition('fadeInPass <=> fadeOutPass', animate('300ms ease-in')),
->>>>>>> 43b2dc0bbe17805cb3045055be8da233b28edb95
-
+            
             // transition('fadeInPass <=> fadeOutPass', [
             //     animate('300ms', keyframes([
             //         style({opaciti: 0, transform: 'translateX(0px)', offset: 0}),
