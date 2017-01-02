@@ -1827,6 +1827,12 @@
    margin-bottom:10px;   
    margin-left:10px;   
  }
+ /*#searchTextAnimation{
+   border-bottom: 1px solid dodgerblue;
+   border-left: 1px solid dodgerblue;
+   border-right: 1px solid dodgerblue;
+    border-radius: 0px 0px 5px 5px;
+ }*/
  
 @media (min-width: 768px) {
 		.event-list > li {
