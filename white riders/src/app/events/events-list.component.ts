@@ -1,8 +1,11 @@
 import {
-  Component, OnInit, ChangeDetectionStrategy, trigger,
-  state, style, transition, animate, keyframes
+  Component, OnInit, ChangeDetectionStrategy
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+
+import { searchBarAnimation } from './searchBar-animation';
+import { pageTransition } from '../shared/routing-animations';
+import { noteAnimation } from './note-animation';
 
 import { Event, EventService } from './event.service';
 
@@ -11,44 +14,12 @@ import { Event, EventService } from './event.service';
   templateUrl: 'events-list.component.html',
   styleUrls: ['events-list.component.css'],
   changeDetection: ChangeDetectionStrategy.Default,
-  animations: [
-    trigger('focusSearchPanel', [
-      state('inactive', style({
-        transform: 'scale(1)'
-      })),
-      state('active', style({
-        transform: 'scale(1.04)'
-      })),
-      transition('inactive => active', animate('500ms ease-in')),
-      transition('active => inactive', animate('500ms ease-out'))
-    ]),
-    trigger('note', [
-      state('inactive', style({
-        opacity: '0'
-      })),
-      state('active', style({
-        opacity: '1',
-      })),
-      transition('inactive => active', [
-        animate(600, keyframes([
-          style({ opacity: '0', transform: 'translateY(0)', offset: '0' }),
-          style({ opacity: '1', transform: 'translateY(-15px)', offset: '0.6' }),
-          style({ opacity: '1', transform: 'translateY(0)', offset: '1' })
-        ]))
-      ]),
-      transition('active => inactive', [
-        animate(600, keyframes([
-          style({ opacity: '1', transform: 'translateY(0)', offset: '0' }),
-          style({ opacity: '1', transform: 'translateY(-15px)', offset: '0.7' }),
-          style({ opacity: '0', transform: 'translateY(100%)', offset: '1' })
-        ]))
-      ])
-    ])
-  ]
+  animations: [pageTransition, searchBarAnimation, noteAnimation]
 
 
 })
 export class EventListComponent implements OnInit {
+  pageOnLoad: string = 'in';
   focusSearchState: string = 'inactive';
   events: Event[];
   values = '';
@@ -176,6 +147,7 @@ export class EventListComponent implements OnInit {
 
 
   ngOnInit() {
+    this.pageOnLoad = (this.pageOnLoad === 'in' ? 'out' : 'in');
     this.events = [];
     this.eventService.getEvents()
       .subscribe(event => {
