@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Input, trigger, state, style, transition, animate } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { NotificationsService } from 'angular2-notifications';
 
 import { Api } from '../shared/kinvey-api.service';
 import { User } from './user';
@@ -35,16 +36,21 @@ export class LoginFormComponent implements OnInit{
 
     data: any = {};
     public userToLogin: FormGroup;
+    options: Object;
+
 
     constructor(
         private router: Router,
         private userService: UserService,
+        private _service: NotificationsService,
         fb: FormBuilder
     ) {
         this.userToLogin = fb.group({
             'username': ['', Validators.compose([Validators.required, Validators.minLength(5)])],
             'password': ['', Validators.compose([Validators.required, Validators.minLength(4)])]
         });
+
+        this.options = { timeOut: 3000, pauseOnHover: true, showProgressBar: false, animate: 'scale', position: ['right', 'top'] };
     }
 
     ngOnInit() {
@@ -58,7 +64,11 @@ export class LoginFormComponent implements OnInit{
 
         this.userService.loginUser(this.data)
             .subscribe(data => {
-                this.router.navigate(['/home']);
-            })
+                this._service.success('Success!', 'Logged in!');
+                setTimeout(() => this.router.navigate(['./home']), 3000);
+            },
+            (err: any) => {
+                this._service.error('', 'Invalid username or password!')
+            });
     }
 }

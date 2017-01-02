@@ -1,25 +1,6 @@
-/*.login-form {
-    background: url("http://2.bp.blogspot.com/-br0WOydBAkU/UkywTNJ4dWI/AAAAAAAAA2A/Qu7FyPTS1I8/s1600/winter-snowboard-pictures-snow-wallpaper-wallpapers-wallwuzz-hd-wallpaper-14104.jpg") no-repeat center center fixed;;
-    background-size: cover;
-    min-height: 100%;
-  min-width: 1024px;
-  width: 100%;
-  height: auto;
-	
-    position: fixed;
-    top:250px;
-    left: 0;*/
-
-
-    /*background: url(images/bg.jpg)  
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;*/
-/*}*/
-
 .form {
     background: url(../../assets/images/mountain.jpg);
+    /*background: url('https://s-media-cache-ak0.pinimg.com/originals/64/39/38/643938987b1b9cb5471de15a55678764.jpg');*/
     background-size: cover;
     /*background-color: rgba(255, 255, 255, 0.2);*/
     /*background-color: lightgrey;*/
@@ -88,13 +69,18 @@ h2 {
     padding-right: 10%;
     opacity: 1;
     white-space: normal;
-    background: blue;
+    background: white;
     border: 3px solid blue;
     border-radius: 0px;
     text-transform: uppercase;
-    color: white;
+    color: blue;
     margin-left: 35%;
     margin-top: 10%;
+}
+
+.login-btn:hover, .regBtn:hover {
+    background: blue;
+    color: white;
 }
 
 .invalidUserAndPass {
@@ -105,8 +91,9 @@ h2 {
 .regBtn {
     text-transform: uppercase;
     margin-left: 30%;
-    color: white;
-    background-color: blue;
+    color: blue;
+    background-color: white;
+    border: 3px solid blue;
     border-radius: 0;
 }
 
@@ -149,4 +136,3 @@ label {
         white-space: normal;
     }
 }*/
-
