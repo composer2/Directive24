@@ -8,7 +8,7 @@
             <label for="username">Username: </label>
             <div class="inner-addon right-addon">
                 <span class="glyphicon glyphicon-user" [ngClass]="{'invalidUserAndPass': !userToLogin.controls['username'].valid && userToLogin.controls['username'].touched}"></span>  
-                <input [formControl]="userToLogin.controls['username']" type="text" class="form-control field" name="username" [(ngModel)]="model.username"  required />
+                <input [formControl]="userToLogin.controls['username']" type="text" class="form-control field" name="username" [(ngModel)]="model.username"  required [@inputStateUser]="inputStateUser" (click)="inputToggleStateUser()"/>
                 <div class="invalidUserAndPass" *ngIf="!userToLogin.controls['username'].valid && userToLogin.controls['username'].touched">
                    Please enter a valid username
                 </div>
@@ -19,7 +19,7 @@
             <label for="password">Password: </label>
             <div class="inner-addon right-addon">
                  <i class="glyphicon glyphicon-lock" [ngClass]="{'invalidUserAndPass': !userToLogin.controls['password'].valid && userToLogin.controls['password'].touched}"></i> 
-                <input [formControl]="userToLogin.controls['password']" type="password" class="form-control field" name="password" [(ngModel)]="model.password" required />
+                <input [formControl]="userToLogin.controls['password']" type="password" class="form-control field" name="password" [(ngModel)]="model.password" required [@inputStatePass]="inputStatePass" (click)="inputToggleStatePass()"/>
                 <div class="invalidUserAndPass" *ngIf="!userToLogin.controls['password'].valid && userToLogin.controls['password'].touched">
                     Please enter a valid username
                 </div>
@@ -28,6 +28,8 @@
         <div class="form-group col-md-12">
             <button class="btn login-btn" type="submit"
                 [disabled]="!loginForm.form.valid"
+                [@loginBtnState]="state" 
+                (click)='toggleState()'
                 >Go</button>           
         </div>
     </form>

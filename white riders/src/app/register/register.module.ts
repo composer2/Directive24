@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ToasterModule, ToasterService} from 'angular2-toaster';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 import { UserService } from './register.service';
 import { routedComponents, RegisterRoutingModule } from './register-routing.module';
@@ -11,7 +11,7 @@ import { routedComponents, RegisterRoutingModule } from './register-routing.modu
   imports: [
         CommonModule,
         FormsModule,
-        ToasterModule, 
+        SimpleNotificationsModule, 
 
         // NotificationsService,
         // SimpleNotificationsModule,

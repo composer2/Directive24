@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Input, trigger, state, style, transition, animate } from '@angular/core';
+import { Input, trigger, state, style, transition, animate, keyframes } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { NotificationsService } from 'angular2-notifications';
@@ -11,21 +11,54 @@ import { UserService } from './register.service';
 @Component({
     selector: 'login-form',
     templateUrl: 'login-form.component.html',
-    styleUrls: ['form.component.css']
-//     animations: [
-//         trigger('loginBtnState', [
-//             state('inactive', style({
-//                 backgroundColor: 'white',
-//                 transform: 'scale(1)'
-//             })),
-//             state('active', style({
-//                 backgroundColor: 'blue',
-//                 transform: 'scale(1.1)'
-//             })),
-//             transition('inactive => active', animate('100ms ease-in')),
-//             transition('active => inactive', animate('100ms ease-out'))
-//         ])
-//     ]
+    styleUrls: ['form.component.css'],
+    animations: [
+        trigger('loginBtnState', [
+            state('inactive', style({
+                transform: 'scale(1)'
+            })),
+            state('active', style({
+                transform: 'scale(1.4)'
+            })),
+            transition('inactive <=> active', animate('200ms ease-in')),
+        ]),
+        trigger('inputStateUser', [
+            state('fadeInUser', style({
+                borderColor: 'lightgray'
+            })),
+            state('fadeOutUser', style({
+                borderColor: 'blue',
+                borderWidth: '4px'
+            })),
+            transition('fadeInUser <=> fadeOutUser', animate('200ms ease-in')),
+
+            // transition('fadeInUser <=> fadeOutUser', [
+            //     animate('300ms', keyframes([
+            //         style({opaciti: 0, transform: 'translateX(-10px)', offset: 0}),
+            //         style({opaciti: 1, transform: 'translateX(10px)', offset: 0.3}),
+            //         style({opaciti: 0, transform: 'translateX(-10px)', offset: 1})
+            //     ]))
+            // ])
+        ]),
+        trigger('inputStatePass', [
+            state('fadeInPass', style({
+                borderColor: 'lightgray'
+            })),
+            state('fadeOutPass', style({
+                borderColor: 'blue',
+                borderWidth: '4px'
+            })),
+            transition('fadeInPass <=> fadeOutPass', animate('300ms ease-in')),
+            
+            // transition('fadeInPass <=> fadeOutPass', [
+            //     animate('300ms', keyframes([
+            //         style({opaciti: 0, transform: 'translateX(0px)', offset: 0}),
+            //         style({opaciti: 1, transform: 'translateX(10px)', offset: 0.3}),
+            //         style({opaciti: 0, transform: 'translateX(0px)', offset: 1})
+            //     ]))
+            // ])
+        ])
+    ]
 
 })
 export class LoginFormComponent implements OnInit{
@@ -37,7 +70,9 @@ export class LoginFormComponent implements OnInit{
     data: any = {};
     public userToLogin: FormGroup;
     options: Object;
-
+    state: string = 'inactive';
+    inputStateUser: string = 'fadeInUser';
+    inputStatePass: string = 'fadeInPass';
 
     constructor(
         private router: Router,
@@ -54,6 +89,18 @@ export class LoginFormComponent implements OnInit{
     }
 
     ngOnInit() {
+    }
+
+    toggleState() {
+        this.state = (this.state === 'inactive' ? 'active' : 'inactive');
+    }
+
+    inputToggleStateUser() {
+        this.inputStateUser = (this.inputStateUser === 'fadeInUser' ? 'fadeOutUser' : 'fadeInUser');
+    }
+
+    inputToggleStatePass() {
+        this.inputStatePass = (this.inputStatePass === 'fadeInPass' ? 'fadeOutPass' : 'fadeInPass');
     }
 
     login() {
