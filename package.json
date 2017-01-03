@@ -5,7 +5,7 @@
   "angular-cli": {},
   "scripts": {
     "ng": "ng",
-    "start": "ng build && node_modules/bin/http-server ./dist",
+    "start": "ng build && \"./node_modules/.bin/http-server\" ./dist --cors",
     "project":"http-server ./dist",
     "lint": "tslint \"src/**/*.ts\"",
     "test": "ng test",
@@ -50,5 +50,9 @@
     "typescript": "~2.0.3",
     "ng2-toastr": "^1.3.3",
     "webdriver-manager": "10.2.5"
+  },
+  "engines": {
+    "node": ">=7.2.1 <7.2.1",
+    "npm": ">= 3.10.10 <3.10.10"
   }
 }
