@@ -155,7 +155,7 @@ export class EventListComponent implements OnInit {
         this.admin = false;
         this.editSingleEvent = false;
         this.deleteSingleEvent = false;
-        if (localStorage['username'] === 'composer2') {
+        if (localStorage['key-username'] === 'composer2') {
           this.admin = true;
         }
         console.log(localStorage['username']);
